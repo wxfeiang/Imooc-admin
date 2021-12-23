@@ -57,7 +57,17 @@ npm install -g cz-customizable
   }
 }
 
-npm run commit 
+npm run commit   用于规范化提交
+
+githooks   
+pre-commit  提交之前跳用
+commit-msg  可用于消息规范化提交  拒绝提交
+
+npm install --save-dev @commitlint/config-conventional @commitlint/cli
+echo "module.exports = {extends: ['@commitlint/config-conventional']};" > commitlint.config.js
+
+
+npm install husky --save-dev
 
 
 ```

@@ -2,24 +2,27 @@
 
 module.exports = {
   types: [
-    { value: '特性', name: 'feat:    一个新的特性' },
-    { value: '修复', name: 'fix:    修复一个Bug' },
-    { value: '文档', name: 'docs:    变更的只有文档' },
-    { value: '格式', name: 'style:    空格, 分号等格式修复' },
-    { value: '重构', name: 'refactor:    代码重构，注意和特性、修复区分开' },
-    { value: '性能', name: 'perf:    提升性能' },
-    { value: '测试', name: 'test:    添加一个测试' },
+    { value: 'feat', name: 'feat:    一个新的特性' },
+    { value: 'fix', name: 'fix:    修复一个Bug' },
+    { value: 'docs', name: 'docs:    变更的只有文档' },
+    { value: 'style', name: 'style:    空格, 分号等格式修复' },
     {
-      value: '打包',
+      value: 'refactor',
+      name: 'refactor:    代码重构，注意和特性、修复区分开'
+    },
+    { value: 'perf', name: 'perf:    提升性能' },
+    { value: 'test', name: 'test:    添加一个测试' },
+    {
+      value: 'build',
       name: 'build:    变更项目构建或外部依赖（例如scopes: webpack、gulp、npm等）打包···'
     },
-    { value: '工具', name: 'chore:    开发工具变动(构建、脚手架工具等)' },
-    { value: '回滚', name: 'revert:    代码回退' }
+    { value: 'chore', name: 'chore:    开发工具变动(构建、脚手架工具等)' },
+    { value: 'revert', name: 'revert:    代码回退' }
   ],
 
   scopes: [
     { name: '模块1' },
-    { name: '模块2'y },
+    { name: '模块2' },
     { name: '模块3' },
     { name: '模块4' }
   ],
@@ -48,7 +51,7 @@ module.exports = {
     confirmCommit: '确定提交说明?'
   },
   //  跳过步骤
-  skipQuestions: ['body','footer'],
+  skipQuestions: ['body', 'footer'],
 
   allowCustomScopes: true,
   allowBreakingChanges: ['特性', '修复'],
