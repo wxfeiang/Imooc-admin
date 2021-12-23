@@ -16,6 +16,7 @@ export default {
   },
   created() {
     console.log('ss')
+    console.log('222')
   }
 }
 </script>
