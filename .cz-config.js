@@ -19,7 +19,7 @@ module.exports = {
 
   scopes: [
     { name: '模块1' },
-    { name: '模块2' },
+    { name: '模块2'y },
     { name: '模块3' },
     { name: '模块4' }
   ],
@@ -47,6 +47,8 @@ module.exports = {
     footer: '关联关闭的issue，例如：#31, #34(可选):\n',
     confirmCommit: '确定提交说明?'
   },
+  //  跳过步骤
+  skipQuestions: ['body','footer'],
 
   allowCustomScopes: true,
   allowBreakingChanges: ['特性', '修复'],
