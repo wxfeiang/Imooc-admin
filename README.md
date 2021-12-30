@@ -66,8 +66,11 @@ commit-msg  可用于消息规范化提交  拒绝提交
 npm install --save-dev @commitlint/config-conventional @commitlint/cli
 echo "module.exports = {extends: ['@commitlint/config-conventional']};" > commitlint.config.js
 
+规范提交代码参考网址： https://juejin.cn/post/6951649464637636622#heading-13
 
 npm install husky --save-dev
+
+npm install --save rest-css  重置样式表
 
 
 ```
