@@ -7,10 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "commit": "git-cz",
-    "prepare": "husky install",
-    "lint-staged": {
-      "*.{vue,js,ts}": "eslint --fix"
-    }
+    "prepare": "husky install"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^0.2.4",
@@ -50,6 +47,12 @@
     "commitizen": {
       "path": "./node_modules/cz-customizable"
     }
+  },
+  "lint-staged": {
+    "src/**/*/.{js,vue}": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "husky": {
     "hooks": {
