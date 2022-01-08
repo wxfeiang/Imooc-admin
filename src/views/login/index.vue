@@ -1,12 +1,7 @@
 <template>
   <div class="bg_box">
     <h3 class="title">后台管理系统</h3>
-    <el-from
-      label-width="120px"
-      :model="loginFrom"
-      :rules="loginRules"
-      ref="loginFrom"
-    >
+    <el-from label-width="120px" :model="loginFrom" :rules="loginRules">
       <el-form-item prop="username">
         <el-input v-model="loginFrom.username" placeholder="请输入用户名">
           <template #prefix>
@@ -16,9 +11,18 @@
       </el-form-item>
 
       <el-form-item prop="password">
-        <el-input v-model="loginFrom.password" placeholder="请输入密码">
+        <el-input
+          v-model="loginFrom.password"
+          placeholder="请输入密码"
+          :type="passwordType"
+        >
           <template #prefix>
             <el-icon class="el-input__icon"><Search /></el-icon>
+          </template>
+          <template #suffix>
+            <el-icon class="el-input__icon" @click="onChengepwdType"
+              ><Search
+            /></el-icon>
           </template>
         </el-input>
       </el-form-item>
@@ -32,29 +36,38 @@
 <script setup>
 import { Avatar, Search } from '@element-plus/icons-vue'
 import { ref } from 'vue'
-import { validatePassword } from './rules'
-//  登陆
+import { validatePassword } from './rules.js'
 const loginFrom = ref({
-  username: '22',
-  password: '222'
+  username: 'admin',
+  password: '123456'
 })
 // loginRules
 const loginRules = ref({
   username: [
     {
       required: true,
-      message: 'Please input Activity name',
-      trigger: 'bulr'
+      message: '请输入用户名',
+      trigger: 'blur'
     }
   ],
   password: [
     {
       required: true,
-      message: 'Please input Activity name',
+      trigger: 'blur',
+
       validator: validatePassword()
     }
   ]
 })
+// 处理密码明文切换
+const passwordType = ref('password')
+const onChengepwdType = () => {
+  if (passwordType.value === 'password') {
+    passwordType.value = 'text'
+  } else {
+    passwordType.value = 'password'
+  }
+}
 </script>
 
 <style>
@@ -63,6 +76,10 @@ const loginRules = ref({
   margin: 10% auto 0;
   background-color: #f5f5f5;
   padding: 30px;
+}
+h3 {
+  text-align: center;
+  line-height: 40px;
 }
 .el-button {
   width: 100%;
