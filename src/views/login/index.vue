@@ -1,7 +1,12 @@
 <template>
   <div class="bg_box">
     <h3 class="title">后台管理系统</h3>
-    <el-from label-width="120px" :model="loginFrom" :rules="loginRules">
+    <el-form
+      ref="ruleFormRef"
+      :model="loginFrom"
+      :rules="rules"
+      label-width="120px"
+    >
       <el-form-item prop="username">
         <el-input v-model="loginFrom.username" placeholder="请输入用户名">
           <template #prefix>
@@ -29,7 +34,7 @@
       <el-form-item>
         <el-button type="primary">登陆</el-button>
       </el-form-item>
-    </el-from>
+    </el-form>
   </div>
 </template>
 
@@ -42,7 +47,7 @@ const loginFrom = ref({
   password: '123456'
 })
 // loginRules
-const loginRules = ref({
+const rules = ref({
   username: [
     {
       required: true,

@@ -29,7 +29,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 但是我们的项目需要使用最新的 script setup 语法，该语法在 v 3.0.0 版本中是不支持的，需要升级 vue 版本。
 执行：
 npm i vue@3.2.8 vue-router@4.0.11 vuex@4.0.2
-升级之后，查看 package.json 得到的版本应为：  
+升级之后，查看 package.json 得到的版本应为：    
 ```
 ### 项目标准化
 ```
