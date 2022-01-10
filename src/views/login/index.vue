@@ -1,12 +1,7 @@
 <template>
   <div class="bg_box">
     <h3 class="title">后台管理系统</h3>
-    <el-form
-      ref="ruleFormRef"
-      :model="loginFrom"
-      :rules="rules"
-      label-width="120px"
-    >
+    <el-form ref="ruleFormRef" :model="loginFrom" :rules="rules">
       <el-form-item prop="username">
         <el-input v-model="loginFrom.username" placeholder="请输入用户名">
           <template #prefix>
@@ -25,9 +20,11 @@
             <el-icon class="el-input__icon"><Search /></el-icon>
           </template>
           <template #suffix>
-            <el-icon class="el-input__icon" @click="onChengepwdType"
-              ><Search
-            /></el-icon>
+            <i
+              class="icon iconfont"
+              :class="isActive ? 'icon-icon-test1' : 'icon-icon-test2'"
+              @click="onChengepwdType"
+            ></i>
           </template>
         </el-input>
       </el-form-item>
@@ -37,16 +34,16 @@
     </el-form>
   </div>
 </template>
-
 <script setup>
 import { Avatar, Search } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 import { validatePassword } from './rules.js'
+// 表单数据
 const loginFrom = ref({
   username: 'admin',
   password: '123456'
 })
-// loginRules
+// 验证规则
 const rules = ref({
   username: [
     {
@@ -59,23 +56,26 @@ const rules = ref({
     {
       required: true,
       trigger: 'blur',
-
       validator: validatePassword()
     }
   ]
 })
 // 处理密码明文切换
 const passwordType = ref('password')
+const isActive = ref(false)
 const onChengepwdType = () => {
   if (passwordType.value === 'password') {
     passwordType.value = 'text'
+    isActive.value = true
   } else {
     passwordType.value = 'password'
+    isActive.value = false
   }
 }
+// 登陆事件操作
 </script>
 
-<style>
+<style scoped lang="scss">
 .bg_box {
   width: 40%;
   margin: 10% auto 0;

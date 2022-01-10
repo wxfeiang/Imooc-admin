@@ -70,7 +70,12 @@ echo "module.exports = {extends: ['@commitlint/config-conventional']};" > commit
 
 npm install husky --save-dev
 
+```
+
+## 项目初始化配置
+```
 npm install --save rest-css  重置样式表
 
+使用了在线 图标库  （后期维护需要不断的使用更新链接）
 
 ```
