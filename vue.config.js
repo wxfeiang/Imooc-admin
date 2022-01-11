@@ -90,8 +90,12 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'https://api.imooc-admin.lgdsunday.club/',
-        changeOrigin: true
+        // target: 'https://api.imooc-admin.lgdsunday.club/',
+        target: 'http://192.168.1.5:3000/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': '/api/mock'
+        }
       }
     }
   },
