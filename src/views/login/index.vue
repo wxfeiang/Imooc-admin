@@ -43,7 +43,7 @@ import { useStore } from 'vuex'
 import { validatePassword } from './rules.js'
 // 表单数据
 const loginFrom = ref({
-  username: 'admin',
+  username: 'super-admin',
   password: '123456'
 })
 // 验证规则

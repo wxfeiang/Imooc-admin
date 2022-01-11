@@ -1,7 +1,7 @@
-const path = require('path')
-function resolve(dir) {
-  return path.join(__dirname, dir)
-}
+// const path = require('path')
+// function resolve(dir) {
+//   return path.join(__dirname, dir)
+// }
 
 module.exports = {
   // 部署应用时的基本 URL
@@ -90,7 +90,7 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'https//api.imooc-admin .lgdsunday.club/',
+        target: 'https://api.imooc-admin.lgdsunday.club/',
         changeOrigin: true
       }
     }

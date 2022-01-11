@@ -77,6 +77,7 @@ npm install husky --save-dev
 npm install --save rest-css  重置样式表
 
 使用了在线 图标库  （后期维护需要不断的使用更新链接）
+配置了环境变量 
 webpack  devserver
 https://webpack.docschina.org/configuration/dev-server/
 

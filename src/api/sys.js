@@ -6,7 +6,6 @@ import requset from '@/utils/request'
  */
 
 export const login = (data) => {
-  console.log('----', data)
   return requset({
     url: '/sys/login',
     method: 'POST',
