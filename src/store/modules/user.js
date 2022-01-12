@@ -1,6 +1,6 @@
 import { login } from '@/api/sys'
 import { TOKEN } from '@/constant'
-import { router } from '@/router'
+import router from '@/router'
 import { getItem, setItem } from '@/utils/storeage'
 import md5 from 'md5'
 

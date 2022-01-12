@@ -91,7 +91,7 @@ module.exports = {
     proxy: {
       '/api': {
         // target: 'https://api.imooc-admin.lgdsunday.club/',
-        target: 'http://192.168.1.5:3000/',
+        target: 'http://47.99.93.97/',
         changeOrigin: true,
         pathRewrite: {
           '^/api': '/api/mock'
