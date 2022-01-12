@@ -89,6 +89,14 @@ https://webpack.docschina.org/configuration/dev-server/
 token   
 路由守卫
 
-
+```
+## 登陆鉴权
+```
+layuot
+   components
+    Sidebar
+      index.vue
+    Navbar.vue
+    AppMain.vue 
 
 ```
