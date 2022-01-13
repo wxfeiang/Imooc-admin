@@ -12,3 +12,16 @@ export const login = (data) => {
     data
   })
 }
+
+/**
+ * 获取个人信息
+ * @param {*} data
+ * @returns
+ */
+
+export const getUserInfo = (data) => {
+  return requset({
+    url: '/sys/profile',
+    method: 'GET'
+  })
+}

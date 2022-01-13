@@ -9,4 +9,10 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+html,
+body,
+#app {
+  height: 100%;
+}
+</style>

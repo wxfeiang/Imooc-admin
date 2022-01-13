@@ -1,5 +1,5 @@
 <template>
-  <div class="" id="">xx</div>
+  <el-aside width="200px">Aside</el-aside>
 </template>
 <script setup></script>
 <style lang="scss" scoped>

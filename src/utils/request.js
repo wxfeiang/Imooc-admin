@@ -1,3 +1,4 @@
+import store from '@/store'
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 
@@ -8,12 +9,10 @@ const service = axios.create({
 // 请求拦截  设置统一header
 service.interceptors.request.use(
   (config) => {
-    // NProgress.start()
-    // 加载
-    // startLoading()
-    // if (localStorage.Token)
-    // config.headers.token = localStorage.Token
-    return config
+    if (store.getters.token) {
+      config.headers.Authorization = `Bearer ${store.getters.token}`
+    }
+    return config // VREAM
   },
   (error) => {
     return Promise.reject(error)
