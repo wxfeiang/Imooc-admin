@@ -23,16 +23,15 @@ import Sidebar from './components/Sidebar'
 
   .el-header {
     height: 60px !important;
-    background: azure;
   }
   .el-aside {
     overflow: hidden;
-    background: #ccc;
+    background: rgb(245, 239, 239);
   }
   .el-main {
     padding-top: 0;
     overflow: hidden !important;
-    background: pink;
+    background: rgb(238, 235, 235);
   }
 }
 </style>

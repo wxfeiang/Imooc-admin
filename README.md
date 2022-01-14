@@ -99,4 +99,6 @@ layuot
     Navbar.vue
     AppMain.vue 
 
+主动退出 ，被动退出
+
 ```
