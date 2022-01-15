@@ -9,15 +9,16 @@ module.exports = {
   //     process.env.NODE_ENV === 'production'
   //       ? '192.168.60.110:8080'
   //       : '192.168.60.110:8080',
-
+  publicPath: process.env.NODE_ENV === 'production' ? './' : '',
   // build时构建文件的目录 构建时传入 --no-clean 可关闭该行为
   outputDir: 'dist',
 
   // build时放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录
-  assetsDir: '',
+
+  assetsDir: 'assets', // 静态资源目录 (js, css, img, fonts)
 
   // 指定生成的 index.html 的输出路径 (相对于 outputDir)。也可以是一个绝对路径。
-  indexPath: 'index.html',
+  // indexPath: 'index.html',
 
   // 默认在生成的静态资源文件名中包含hash以控制缓存
   filenameHashing: true,
@@ -55,7 +56,7 @@ module.exports = {
   transpileDependencies: [],
 
   // 如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建
-  productionSourceMap: true,
+  productionSourceMap: false,
 
   // 设置生成的 HTML 中 <link rel="stylesheet"> 和 <script> 标签的 crossorigin 属性（注：仅影响构建时注入的标签）
   crossorigin: '',

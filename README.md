@@ -101,4 +101,20 @@ layuot
 
 主动退出 ，被动退出
 
+
+1. @lEVA: article-create
+2. ZH#I: article-detail
+3. zit|Z: article-ranking
+4. tHiRT: error-page
+1. 404
+2. 401
+5.%: import
+6. /XR7*: permission-list|
+7.^ A#L: profile
+8. 67&: role-list
+9. AFä8: user-info
+10. AF: user-manage
+
+动态路由表建设  
+
 ```
