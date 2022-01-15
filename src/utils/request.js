@@ -42,8 +42,6 @@ service.interceptors.response.use(
     }
   },
   (error) => {
-    console.log(error.message)
-
     /** *** 接收到异常响应的处理开始 *****/
     if (error && error.response) {
       // 1.公共错误处理
@@ -94,10 +92,8 @@ service.interceptors.response.use(
         error.message = '服务器响应超时，请刷新当前页'
         store.dispatch('user/logout')
       }
-
-      ElMessage.error(error.message)
-      //
     }
+    ElMessage.error(error.message)
     return Promise.reject(error)
   }
 )
