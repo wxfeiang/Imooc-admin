@@ -1,4 +1,5 @@
 import store from '@/store'
+import { isCheckTimeout } from '@/utils/auth'
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 
@@ -10,6 +11,12 @@ const service = axios.create({
 service.interceptors.request.use(
   (config) => {
     if (store.getters.token) {
+      // token 是否过期
+      if (isCheckTimeout()) {
+        // 退出 logout
+        store.dispatch('user/logout')
+        return Promise.reject(new Error('token---失效了'))
+      }
       config.headers.Authorization = `Bearer ${store.getters.token}`
     }
     return config // VREAM
@@ -35,7 +42,8 @@ service.interceptors.response.use(
     }
   },
   (error) => {
-    console.log('服务调用失败', error)
+    console.log(error.message)
+
     /** *** 接收到异常响应的处理开始 *****/
     if (error && error.response) {
       // 1.公共错误处理
@@ -81,12 +89,16 @@ service.interceptors.response.use(
           error.message = `连接错误${error.response.status}`
       }
     } else {
-      // 超时处理
+      // 超时处理   可从接口返回数据判断
       if (JSON.stringify(error).includes('timeout')) {
-        ElMessage.error('服务器响应超时，请刷新当前页')
+        error.message = '服务器响应超时，请刷新当前页'
+        store.dispatch('user/logout')
       }
-      error.message = '连接服务器失败'
+
+      ElMessage.error(error.message)
+      //
     }
+    return Promise.reject(error)
   }
 )
 // 封装接口请求模块
