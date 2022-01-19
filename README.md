@@ -116,5 +116,6 @@ layuot
 10. AF: user-manage
 
 动态路由表建设  
+动态获取彩蛋 权限
 
 ```
