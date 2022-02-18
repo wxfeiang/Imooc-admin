@@ -135,7 +135,7 @@ const publicRoutes = [
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: [...publicRoutes, ...privateRoutes]
+  routes: [...publicRoutes, ...privateRoutes] //  路由合并
 })
 
 export default router

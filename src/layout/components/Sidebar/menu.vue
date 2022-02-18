@@ -36,7 +36,21 @@
   </el-menu>
 </template>
 <script setup>
+import { computed } from 'vue'
 import { Location, Menu as IconMenu } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router'
+import { fiterRoutes, genarateMenu } from '@/utils/route'
+const router = useRouter()
+
+const routes = computed(() => {
+  const fRoutes = fiterRoutes(router.getRoutes())
+
+  console.log(fRoutes)
+
+  return genarateMenu(fRoutes)
+})
+
+console.log(JSON.stringify(routes.value))
 
 // const handleOpen = (key, keyPath) => {
 //   console.log(key, keyPath)
