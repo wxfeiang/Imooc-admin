@@ -24,25 +24,25 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### 项目说明
-```
-因为使用 @vue/cli-v4.5.13 版本创建的项目中，vue 的版本为 v 3.0.0 。
-但是我们的项目需要使用最新的 script setup 语法，该语法在 v 3.0.0 版本中是不支持的，需要升级 vue 版本。
-执行：
+* 因为使用 @vue/cli-v4.5.13 版本创建的项目中，vue 的版本
+为 v 3.0.0 。
+* 因为使用 @vue/cli-v4.5.13 版本创建的项目中，vue 的版本为 v 3.0.0 。
+* 但是我们的项目需要使用最新的 script setup 语法，该语法在 v 3.0.0 版本中是不支持的，需要升级 vue 版本。
+* 执行：
 npm i vue@3.2.8 vue-router@4.0.11 vuex@4.0.2
 升级之后，查看 package.json 得到的版本应为：    
-```
+
 ### 项目标准化
+
+* 项目初始化使用了 Eslint 标准处理 eslint 与 其他格式化工具的冲突
+
+* 代码提交规范化 git cz
+
+* npm install --save-dev commitizen
+* npm install -g cz-customizable
+
 ```
-项目初始化使用了 Eslint 标准
-处理 eslint 与 其他格式化工具的冲突
-
-代码提交规范化 git cz
-
-npm install --save-dev commitizen
-npm install -g cz-customizable
-
-
-在package.json
+ 在package.json
 {
   "scripts": {
     "commit": "git-cz",
@@ -101,21 +101,8 @@ layuot
 
 主动退出 ，被动退出
 
-
-1. @lEVA: article-create
-2. ZH#I: article-detail
-3. zit|Z: article-ranking
-4. tHiRT: error-page
-1. 404
-2. 401
-5.%: import
-6. /XR7*: permission-list|
-7.^ A#L: profile
-8. 67&: role-list
-9. AFä8: user-info
-10. AF: user-manage
-
-动态路由表建设  
-动态获取彩蛋 权限
-
 ```
+## 登陆后 
+* 动态路由表
+* 动态获取Menu 权限**~~~~**
+

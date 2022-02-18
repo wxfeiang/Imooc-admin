@@ -27,6 +27,6 @@ export function isCheckTimeout() {
   // 缓存时间
 
   const tiemStamp = getTimeStamp()
-  console.log(currentTime - tiemStamp > TOKEN_TIMEOUT_VALUE, '缓存时间是否过期')
+  // console.log(currentTime - tiemStamp > TOKEN_TIMEOUT_VALUE, '缓存时间是否过期')
   return currentTime - tiemStamp > TOKEN_TIMEOUT_VALUE
 }

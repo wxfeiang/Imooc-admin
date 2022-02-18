@@ -1,6 +1,7 @@
 <template>
   <div class="nav">
     <div class="right_menu">
+      <div class="left">您好,{{ $store.getters.userInfo.title }}</div>
       <el-dropdown trigger="click">
         <div class="avatar_warp">
           <el-avatar
@@ -32,6 +33,11 @@ const logout = () => {
   align-items: center;
 }
 .right_menu {
+  display: flex;
+  align-items: center;
   margin-left: auto;
+  .left {
+    margin-right: 30px;
+  }
 }
 </style>

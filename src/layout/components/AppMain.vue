@@ -1,5 +1,7 @@
 <template>
-  <div class="" id="">sdfvsd</div>
+  <div class="" id="">
+    <router-view />
+  </div>
 </template>
 <script setup></script>
 <style lang="scss" scoped>

@@ -94,6 +94,7 @@ module.exports = {
         // target: 'https://api.imooc-admin.lgdsunday.club/',
         target: 'http://47.99.93.97/',
         changeOrigin: true,
+        // logLevel: 'debug', // 调试的时候可查看转发的路径
         pathRewrite: {
           '^/api': '/api/mock'
         }

@@ -67,7 +67,6 @@ export default {
       this.commit('user/setToken', '')
       this.commit('user/setUserInfo', {})
       removeAllItem()
-      // TODO  清理权限
       router.push('/login')
     }
   }

@@ -3,6 +3,12 @@ import { isCheckTimeout } from '@/utils/auth'
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 
+// console.log(
+//   process.env.NODE_ENV,
+//   process.env.VUE_APP_BASE_API,
+//   'process.env.VUE_APP_BASE_API'
+// )
+
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   timeout: 5000
