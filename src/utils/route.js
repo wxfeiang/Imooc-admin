@@ -44,12 +44,11 @@ export const genarateMenu = (routes, basePath = '') => {
     if (isNull(item.children) && isNull(item.meta)) return
     if (isNull(item.meta) && !isNull(item.children)) {
       //  递归
-      result.push(genarateMenu(item.children))
+      result.push(...genarateMenu(item.children))
       return
     }
     //  不存在 children  存在meta  ||  children && meat
     //  最终menu  需要跳转  所以要合并path
-
     const routePath = path.resolve(basePath, item.path)
 
     // 路由分离后存在 同名 路由

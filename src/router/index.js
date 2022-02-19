@@ -10,7 +10,7 @@ const privateRoutes = [
     component: layout,
     redirect: '/user/manger',
     meta: {
-      title: 'user',
+      title: '用户管理',
       icon: 'personnel'
     },
     children: [
