@@ -1,8 +1,10 @@
 <template>
-  <el-container class="home">
-    <el-aside width="200px">
-      <Sidebar :style="{ backgroundColr: varilables.menuBg }"></Sidebar>
-    </el-aside>
+  <el-container
+    class="home"
+    :class="[$store.getters.siderbarOpen ? 'open' : 'close']"
+  >
+    <Sidebar :style="{ background: $store.getters.cssVar.menuBg }"></Sidebar>
+
     <el-container>
       <el-header>
         <Navbar />
@@ -12,22 +14,19 @@
   </el-container>
 </template>
 <script setup>
-import varilables from '@/styles/varilables.scss'
 import AppMain from './components/AppMain'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 </script>
 <style lang="scss" scoped>
+@import '~@/styles/varilables.scss';
 .home {
   height: 100%;
 
   .el-header {
     height: 60px !important;
   }
-  .el-aside {
-    overflow: hidden;
-    background: rgb(245, 239, 239);
-  }
+
   .el-main {
     padding-top: 0;
     overflow: hidden !important;

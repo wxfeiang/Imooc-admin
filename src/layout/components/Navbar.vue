@@ -1,5 +1,8 @@
 <template>
   <div class="nav">
+    <div class="left">
+      <Hamburger />
+    </div>
     <div class="right_menu">
       <div class="left">您好,{{ $store.getters.userInfo.title }}</div>
       <el-dropdown trigger="click">
@@ -21,6 +24,7 @@
 </template>
 
 <script setup>
+import Hamburger from '@/components/hamburger'
 import { useStore } from 'vuex'
 const store = useStore()
 const logout = () => {

@@ -11,7 +11,7 @@ const privateRoutes = [
     redirect: '/user/manger',
     meta: {
       title: '用户管理',
-      icon: 'personnel'
+      icon: 'icon-yonghu1'
     },
     children: [
       {
@@ -29,7 +29,7 @@ const privateRoutes = [
         component: () => import('@/views/role-list/index'),
         meta: {
           title: 'rolelist',
-          icon: 'roul'
+          icon: 'icon-authority'
         }
       },
       {
@@ -38,7 +38,7 @@ const privateRoutes = [
         component: () => import('@/views/permission-list/index'),
         meta: {
           title: 'permissionlist',
-          icon: 'permission'
+          icon: 'icon-jiaoseguanli'
         }
       },
       {
@@ -65,7 +65,7 @@ const privateRoutes = [
     redirect: '/article/ranking',
     meta: {
       title: 'article',
-      icon: 'article'
+      icon: 'icon-hengpai'
     },
     children: [
       {
@@ -74,7 +74,7 @@ const privateRoutes = [
         component: () => import('@/views/article-ranking/index'),
         meta: {
           title: 'articleRanking',
-          icon: 'article-ranking'
+          icon: 'icon-wenzhang'
         }
       },
       {
@@ -112,7 +112,7 @@ const publicRoutes = [
     children: [
       {
         path: '/profile',
-        name: 'profile',
+        name: 'icon-gerenzhongxin',
         component: () => import('@/views/profile/index'),
         meta: {
           title: 'profile',
