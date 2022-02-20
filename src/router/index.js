@@ -8,7 +8,7 @@ const privateRoutes = [
   {
     path: '/user',
     component: layout,
-    redirect: '/user/manger',
+    redirect: '/user/manage',
     meta: {
       title: '用户管理',
       icon: 'icon-yonghu1'

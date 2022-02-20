@@ -22,7 +22,7 @@ const pd = '20px'
 @import '~@/styles/varilables.scss';
 .logo {
   text-align: center;
-  padding: v-bind('pd');
+  padding: v-bind('pd') 0;
   h1 {
     color: v-bind('color');
     font-size: 20px;

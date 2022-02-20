@@ -2,6 +2,7 @@
   <div class="nav">
     <div class="left">
       <Hamburger />
+      <Breadcrumb />
     </div>
     <div class="right_menu">
       <div class="left">您好,{{ $store.getters.userInfo.title }}</div>
@@ -25,6 +26,8 @@
 
 <script setup>
 import Hamburger from '@/components/hamburger'
+import Breadcrumb from '@/components/Breadcrumb'
+
 import { useStore } from 'vuex'
 const store = useStore()
 const logout = () => {
@@ -35,6 +38,13 @@ const logout = () => {
 .nav {
   display: flex;
   align-items: center;
+  .left {
+    display: flex;
+    align-items: center;
+    .el-breadcrumb {
+      margin-left: 10px;
+    }
+  }
 }
 .right_menu {
   display: flex;
