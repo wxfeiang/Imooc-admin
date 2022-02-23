@@ -11,6 +11,7 @@ const getChildrenRoutes = (routes) => {
   routes.forEach((route) => {
     if (route.children && route.children.length > 0) {
       result.push(...route.children)
+      console.log(route.children)
     }
   })
 
