@@ -16,14 +16,13 @@
     <el-icon>
       <i class="icon iconfont" :class="route.meta.icon"></i>
     </el-icon>
-
     <span>{{ route.meta.title }}</span>
   </el-menu-item>
 </template>
 <script setup>
 // import { Location } from '@element-plus/icons-vue'
-import sideItem from './sideItem'
 import { defineProps } from 'vue'
+import sideItem from './sideItem'
 
 defineProps({
   route: {

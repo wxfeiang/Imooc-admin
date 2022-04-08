@@ -3,11 +3,11 @@ import { isCheckTimeout } from '@/utils/auth'
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 
-// console.log(
-//   process.env.NODE_ENV,
-//   process.env.VUE_APP_BASE_API,
-//   'process.env.VUE_APP_BASE_API'
-// )
+console.log(
+  process.env.NODE_ENV,
+  process.env.VUE_APP_BASE_API,
+  'process.env.VUE_APP_BASE_API'
+)
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
@@ -16,6 +16,8 @@ const service = axios.create({
 // 请求拦截  设置统一header
 service.interceptors.request.use(
   (config) => {
+    console.log(config)
+
     if (store.getters.token) {
       // token 是否过期
       if (isCheckTimeout()) {

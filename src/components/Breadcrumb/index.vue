@@ -33,7 +33,7 @@ const gerelBreadcrumb = () => {
   breadcrumbData.value = route.matched.filter((item) => {
     return item.meta && item.meta.title
   })
-  console.log(breadcrumbData.value)
+  // console.log(breadcrumbData.value)
 }
 
 //  监听路由变化
