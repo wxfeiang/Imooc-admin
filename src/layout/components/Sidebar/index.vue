@@ -1,7 +1,7 @@
 <template>
   <el-aside :class="[$store.getters.siderbarOpen ? 'open' : 'close']">
     <div class="logo">
-      <el-avatar :size="size" :src="circleUrl"></el-avatar>
+      <el-avatar :size="size" :src="circleUrl" id="side"></el-avatar>
       <h1 v-if="$store.getters.siderbarOpen">后台管理系统</h1>
     </div>
 
@@ -11,8 +11,8 @@
   </el-aside>
 </template>
 <script setup>
-import Menu from './menu'
 import { ref } from 'vue'
+import Menu from './menu'
 const circleUrl = ref('http://47.99.93.97/api/public/upload/1642521427253.jpg')
 const size = 50
 const color = 'red'

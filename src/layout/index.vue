@@ -28,7 +28,7 @@ import Sidebar from './components/Sidebar'
   }
 
   .el-main {
-    padding-top: 0;
+    //  padding-top: 0;
     overflow: hidden !important;
     background: rgb(238, 235, 235);
   }

@@ -5,13 +5,15 @@
       <Breadcrumb />
     </div>
     <div class="right_menu">
+      <!-- Guide引导按钮 -->
+      <Guide />
       <!-- 全屏按钮 -->
       <Screenfull />
       <div class="left">您好,{{ $store.getters.userInfo.title }}</div>
       <el-dropdown trigger="click">
         <div class="avatar_warp">
           <el-avatar
-            :size="50"
+            :size="30"
             :src="$store.getters.userInfo.avatar"
           ></el-avatar>
         </div>
@@ -28,8 +30,9 @@
 
 <script setup>
 import Breadcrumb from '@/components/Breadcrumb'
+import Guide from '@/components/Guide'
 import Hamburger from '@/components/hamburger'
-import Screenfull from '@/components/screenfull'
+import Screenfull from '@/components/Screenfull'
 import { useStore } from 'vuex'
 const store = useStore()
 const logout = () => {

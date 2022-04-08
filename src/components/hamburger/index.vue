@@ -1,10 +1,6 @@
 <template>
-  <div
-    class="hamburger-container"
-    id="hamburger-container"
-    @click="toggleClick"
-  >
-    <i class="icon iconfont" :class="icon"> </i>
+  <div class="hamburger-container" @click="toggleClick">
+    <i class="icon iconfont" :class="icon" id="hamburger"> </i>
   </div>
 </template>
 <script setup>
