@@ -60,7 +60,7 @@ npm i vue@3.2.8 vue-router@4.0.11 vuex@4.0.2
 npm run commit   用于规范化提交
 
 githooks   
-pre-commit  提交之前跳用
+pre-commit  提交之前调用  用eslint 检测提交的文件是否符合
 commit-msg  可用于消息规范化提交  拒绝提交
 
 npm install --save-dev @commitlint/config-conventional @commitlint/cli
@@ -111,4 +111,5 @@ layuot
 
 ## 国际化 
 * vue-i18n@next   // v9.x 版本
-
+* 页面引导页    显示   guide
+* 

@@ -1,4 +1,7 @@
 <template>
+  <div class="i18n">
+    {{ $t('msg.test') }}
+  </div>
   <div class="table">
     <Table :tableData="tableData" :congigTable="congigTable">
       <template v-slot:action="slotdata">

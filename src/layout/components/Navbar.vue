@@ -5,6 +5,8 @@
       <Breadcrumb />
     </div>
     <div class="right_menu">
+      <!-- 中英文切换 -->
+      <LangSelect />
       <!-- Guide引导按钮 -->
       <Guide />
       <!-- 全屏按钮 -->
@@ -32,8 +34,10 @@
 import Breadcrumb from '@/components/Breadcrumb'
 import Guide from '@/components/Guide'
 import Hamburger from '@/components/hamburger'
+import LangSelect from '@/components/LangSelect'
 import Screenfull from '@/components/Screenfull'
 import { useStore } from 'vuex'
+
 const store = useStore()
 const logout = () => {
   store.dispatch('user/logout')
