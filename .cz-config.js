@@ -24,7 +24,8 @@ module.exports = {
       value: 'chore',
       name: 'chore:    对构建过程或辅助工具和库的更改（不影响源文件、测试用例）'
     },
-    { value: 'revert', name: 'revert:   回滚 commit' }
+    { value: 'revert', name: 'revert:   回滚 commit' },
+    { value: 'del', name: 'del:      删除代码/文件' }
   ],
 
   // scope 类型（定义之后，可通过上下键选择）
@@ -68,7 +69,7 @@ module.exports = {
 
   // 交互提示信息
   messages: {
-    type: '确保本次提交遵循 Angular 规范！\n选择你要提交的类型：',
+    type: '确保本次提交遵循 vue 规范！\n选择你要提交的类型：',
     scope: '\n选择一个 scope（可选）：',
     // 选择 scope: custom 时会出下面的提示
     customScope: '请输入自定义的 scope：',
