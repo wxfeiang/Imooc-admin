@@ -6,7 +6,13 @@
     style="width: 100%"
     ref="tables"
     @selection-change="selection"
+    v-loading="loading"
   >
+    <!-- empty  可扩展图片提示 -->
+    <template #empty>
+      <el-empty :description="emptyDesc" />
+    </template>
+
     <!-- 多选 -->
     <el-table-column
       type="selection"
@@ -69,9 +75,13 @@ const props = defineProps({
   congigTable: {
     type: Object,
     required: true
+  },
+  loading: {
+    type: Boolean,
+    default: false
   }
 })
-
+const emptyDesc = ref('未查询到相关数据！')
 const selection = () => {
   console.log('选择---')
 }

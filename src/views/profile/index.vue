@@ -6,6 +6,7 @@
     <Table
       :tableData="tableData"
       :congigTable="congigTable"
+      :loading="loading"
       @pagination="pagination"
     >
       <template v-slot:action="slotdata">
@@ -27,6 +28,7 @@ import { ref } from 'vue'
 //     a: 1
 //   }
 // })
+const loading = ref(true)
 const tableData = ref({
   total: 101,
   list: [
@@ -100,7 +102,9 @@ const delData = (data) => {
 }
 const getList = async () => {
   const data = await getoutheMenu()
-  console.log(data)
+  if (data) {
+    loading.value = false
+  }
 }
 getList()
 </script>
