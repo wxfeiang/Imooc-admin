@@ -2,17 +2,43 @@
   <!-- <div class="i18n">
     {{ $t('msg.test') }}
   </div> -->
+  <!-- serch -->
+  <div class="serch">
+    <el-row :gutter="20">
+      <el-col :span="6"
+        ><div class="grid-content bg-purple" />
+        检索1</el-col
+      >
+      <el-col :span="6"
+        ><div class="grid-content bg-purple" />
+        2</el-col
+      >
+      <el-col :span="6"
+        ><div class="grid-content bg-purple" />
+        2</el-col
+      >
+      <el-col :span="6"
+        ><div class="grid-content bg-purple" />
+        2</el-col
+      >
+    </el-row>
+  </div>
+  <SeachTable></SeachTable>
   <div class="table">
     <Table
-      :tableData="tableData"
       :congigTable="congigTable"
       :loading="loading"
+      :tableData="tableData"
       @pagination="pagination"
+      border
+      stripe
     >
       <template v-slot:action="slotdata">
         <!-- {{ slotdata.data.cont }} -->
         <div class="send">
-          <el-button @click="delData(slotdata.data.$index)">删除</el-button>
+          <el-button @click="delData(slotdata.data.$index)" size="mini"
+            >删除</el-button
+          >
         </div>
       </template>
     </Table>
@@ -20,9 +46,11 @@
 </template>
 <script setup>
 import { getoutheMenu } from '@/api/sys'
+import SeachTable from '@/components/SeachTable'
 import Table from '@/components/Table'
 import { ref } from 'vue'
 
+//
 // const parms = ref({
 //   query: {
 //     a: 1
@@ -30,11 +58,11 @@ import { ref } from 'vue'
 // })
 const loading = ref(true)
 const tableData = ref({
-  total: 101,
+  total: 0,
   list: [
     {
       date: '2016-05-03',
-      name: 'Tom',
+      name: 'Tom33333',
       address: 'No. 189, Grove St, Los Angeles'
     },
     {
@@ -59,36 +87,29 @@ const congigTable = ref({
   xh: true,
   columns: [
     {
-      label: '序号',
-      width: '40',
-      prop: 'jlxh',
-      align: 'center'
-    },
-    {
-      label: '姓名',
+      label: 'mingchen ',
       prop: 'name',
-      align: 'left',
-      width: '100'
+      align: 'left'
     },
     {
       label: '日期',
       prop: 'date',
-      align: 'left',
-      width: '100'
+      align: 'left'
     },
     {
-      label: '地址',
-      prop: 'address',
-      align: 'left',
-      width: '100'
+      label: '目录名称',
+      prop: 'titele',
+      align: 'center',
+      'show-overflow-tooltip': true
     },
 
     {
       label: '操作',
       prop: 'send',
-      align: 'center',
+      align: 'left',
       column: 'slot',
-      slotName: 'action'
+      slotName: 'action',
+      width: '100'
     }
   ]
 })
@@ -102,8 +123,11 @@ const delData = (data) => {
 }
 const getList = async () => {
   const data = await getoutheMenu()
-  if (data) {
+  if (data && data.length > 0) {
     loading.value = false
+    tableData.value.total = data.length
+    tableData.value.list = data
+    console.log(tableData.value)
   }
 }
 getList()

@@ -1,68 +1,69 @@
 <template>
-  <!--  :header-cell-class-name="tableStyle" -->
-  <el-table
-    empty-text="暂无数据"
-    :data="tableData.list"
-    style="width: 100%"
-    ref="tables"
-    @selection-change="selection"
-    v-loading="loading"
-  >
-    <!-- empty  可扩展图片提示 -->
-    <template #empty>
-      <el-empty :description="emptyDesc" />
-    </template>
-
-    <!-- 多选 -->
-    <el-table-column
-      type="selection"
-      min-width="30"
-      v-if="congigTable.checkbox"
-      align="center"
+  <div class="table_warp">
+    <!--  :header-cell-class-name="tableStyle" -->
+    <el-table
+      style="width: 100%"
+      ref="tables"
+      @selection-change="selection"
+      v-loading="loading"
+      element-loading-text="数据正在加载中..."
+      v-bind="$attrs"
+      :data="tableData.list"
     >
-    </el-table-column>
+      <!-- empty  可扩展图片提示   v-on="$listeners"-->
+      <template #empty>
+        <el-empty :description="emptyDesc" />
+      </template>
 
-    <!-- 文本 -->
-    <template v-for="(item, index) in congigTable.columns">
-      <!-- 判断是否插槽 -->
+      <!-- 多选框-->
       <el-table-column
-        :key="index"
-        :prop="item.prop"
-        :label="item.label"
-        :min-width="item.width ? item.width : '60'"
-        :align="item.align"
-        v-if="item.column == 'slot'"
+        type="selection"
+        min-width="30"
+        v-if="congigTable.checkbox"
+        align="center"
       >
-        <template v-slot="scope">
-          <slot :name="item.slotName" :data="scope"></slot>
-        </template>
+      </el-table-column>
+      <!-- 默认序号显示 -->
+      <el-table-column
+        type="index"
+        min-width="30"
+        v-if="congigTable.xh || congigTable.xh[0]"
+        align="center"
+        :label="congigTable.xh[1] || '#'"
+      >
       </el-table-column>
       <!-- 文本 -->
-      <el-table-column
-        v-else
-        :key="item.label"
-        :prop="item.prop"
-        :label="item.label"
-        :min-width="item.width ? item.width : '60'"
-        :align="item.align"
-        :show-overflow-tooltip="true"
-      >
-      </el-table-column>
-    </template>
-  </el-table>
-  <!-- 完整功能分页 -->
-  <el-pagination
-    v-model:currentPage="page"
-    v-model:page-size="limt"
-    :page-sizes="[10, 20, 30, 40]"
-    :small="small"
-    :disabled="disabled"
-    :background="background"
-    layout="total, sizes, prev, pager, next, jumper"
-    :total="tableData.total"
-    @size-change="handleSizeChange"
-    @current-change="handleCurrentChange"
-  />
+      <template v-for="(item, index) in congigTable.columns">
+        <!-- 判断是否插槽 -->
+        <el-table-column
+          v-if="item.column == 'slot'"
+          :key="index"
+          v-bind="item"
+        >
+          <template v-slot="scope">
+            <slot :name="item.slotName" :data="scope"></slot>
+          </template>
+        </el-table-column>
+        <!-- 文本 -->
+        <el-table-column v-else :key="item.label" v-bind="item">
+        </el-table-column>
+      </template>
+    </el-table>
+    <!-- 完整功能分页 -->
+    <el-pagination
+      v-if="tableData.total > 0"
+      v-model:currentPage="page"
+      v-model:page-size="limt"
+      :page-sizes="[10, 20, 30, 40]"
+      :small="small"
+      :disabled="disabled"
+      :background="background"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="tableData.total"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+    />
+  </div>
 </template>
 <script setup>
 import { defineEmits, defineProps, onBeforeMount, ref } from 'vue'

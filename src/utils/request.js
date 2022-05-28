@@ -35,13 +35,13 @@ service.interceptors.request.use(
 // 响应拦截  401 token过期处理
 service.interceptors.response.use(
   (response) => {
-    const { code, message, data } = response.data
+    const { code, message, data } = response.data // 后台返回的标准数据格式
     // NProgress.done()
 
     // 请求是否成功
     // 成功后解析数据
     // 请求成功 业务失败
-    if (code === 200) {
+    if (code == 200) {
       return data
     } else {
       ElMessage.error(message)

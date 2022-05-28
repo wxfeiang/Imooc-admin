@@ -87,7 +87,7 @@ module.exports = {
     port: 8000, // 端口号
     // https: false, //
     // open: true, // 配置自动启动浏览器
-    // hotOnly: true, // 热更新
+    hotOnly: true, // 热更新
     proxy: {
       // 配置自动启动浏览器
       '/api': {

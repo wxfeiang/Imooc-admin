@@ -11,6 +11,7 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'space-before-function-paren': 'off',
-    'no-unused-vars': 0 // 变量未使用
+    'no-unused-vars': 0, // 变量未使用
+    eqeqeq: 0 //三等号
   }
 }
