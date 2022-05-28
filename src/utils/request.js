@@ -6,18 +6,16 @@ import { ElMessage } from 'element-plus'
 console.log(
   process.env.NODE_ENV,
   process.env.VUE_APP_BASE_API,
-  'process.env.VUE_APP_BASE_API'
+  'process.env.VUE_APP_BASE_API-----'
 )
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
-  timeout: 5000
+  timeout: 36000 * 10
 })
 // 请求拦截  设置统一header
 service.interceptors.request.use(
   (config) => {
-    console.log(config)
-
     if (store.getters.token) {
       // token 是否过期
       if (isCheckTimeout()) {
@@ -25,7 +23,8 @@ service.interceptors.request.use(
         store.dispatch('user/logout')
         return Promise.reject(new Error('token---失效了'))
       }
-      config.headers.Authorization = `Bearer ${store.getters.token}`
+      // Bearer + ''  后端已经加好了
+      config.headers.Authorization = `${store.getters.token}`
     }
     return config // VREAM
   },
@@ -36,13 +35,13 @@ service.interceptors.request.use(
 // 响应拦截  401 token过期处理
 service.interceptors.response.use(
   (response) => {
-    const { success, message, data } = response.data
+    const { code, message, data } = response.data
     // NProgress.done()
 
     // 请求是否成功
     // 成功后解析数据
     // 请求成功 业务失败
-    if (success) {
+    if (code === 200) {
       return data
     } else {
       ElMessage.error(message)

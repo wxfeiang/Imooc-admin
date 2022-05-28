@@ -7,7 +7,7 @@ import requset from '@/utils/request'
 
 export const login = (data) => {
   return requset({
-    url: '/sys/login',
+    url: '/mock/sys/login',
     method: 'POST',
     data
   })
@@ -21,7 +21,14 @@ export const login = (data) => {
 
 export const getUserInfo = (data) => {
   return requset({
-    url: '/sys/profile',
+    url: '/mock/sys/profile',
+    method: 'GET'
+  })
+}
+
+export const getoutheMenu = (data) => {
+  return requset({
+    url: '/acjson/outheMenu',
     method: 'GET'
   })
 }

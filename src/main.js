@@ -9,4 +9,5 @@ import store from './store'
 
 const app = createApp(App)
 installElementPlus(app)
+
 app.use(store).use(router).use(i18n).mount('#app')

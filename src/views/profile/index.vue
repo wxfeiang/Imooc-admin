@@ -1,9 +1,13 @@
 <template>
-  <div class="i18n">
+  <!-- <div class="i18n">
     {{ $t('msg.test') }}
-  </div>
+  </div> -->
   <div class="table">
-    <Table :tableData="tableData" :congigTable="congigTable">
+    <Table
+      :tableData="tableData"
+      :congigTable="congigTable"
+      @pagination="pagination"
+    >
       <template v-slot:action="slotdata">
         <!-- {{ slotdata.data.cont }} -->
         <div class="send">
@@ -14,30 +18,40 @@
   </div>
 </template>
 <script setup>
+import { getoutheMenu } from '@/api/sys'
 import Table from '@/components/Table'
 import { ref } from 'vue'
-const tableData = ref([
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
-  }
-])
+
+// const parms = ref({
+//   query: {
+//     a: 1
+//   }
+// })
+const tableData = ref({
+  total: 101,
+  list: [
+    {
+      date: '2016-05-03',
+      name: 'Tom',
+      address: 'No. 189, Grove St, Los Angeles'
+    },
+    {
+      date: '2016-05-02',
+      name: 'Tom',
+      address: 'No. 189, Grove St, Los Angeles'
+    },
+    {
+      date: '2016-05-04',
+      name: 'Tom',
+      address: 'No. 189, Grove St, Los Angeles'
+    },
+    {
+      date: '2016-05-01',
+      name: 'Tom',
+      address: 'No. 189, Grove St, Los Angeles'
+    }
+  ]
+})
 const congigTable = ref({
   checkbox: true,
   xh: true,
@@ -76,11 +90,19 @@ const congigTable = ref({
     }
   ]
 })
+const pagination = (val) => {
+  console.log(val, '分页参数')
+}
 
 // 删除数据操作
 const delData = (data) => {
   console.log(data)
 }
+const getList = async () => {
+  const data = await getoutheMenu()
+  console.log(data)
+}
+getList()
 </script>
 <style lang="scss" scoped>
 //@import url(); 引入公共css类

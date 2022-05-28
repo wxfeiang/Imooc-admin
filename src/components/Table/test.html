@@ -1,0 +1,77 @@
+1. 接口管理（程序自动添加和修改， 无需人工维护）
+URI, 请求方式，接口版本，接口名称，功能说明，输入输出(swagger)，接口状态（正常、要下线、已下线），接口上线时间，接口最后修改时间
+URl和请求方式作为唯一标识
+页面
+1）查询
+搜索条件：接口名称（模糊），uri（模糊），接口状态
+
+2）增、删、改
+不允许增和删，只允许修改接口名称和功能描述
+
+3）有页面能查询到访问改接口的全部系统
+
+表：
+表名 GLP_API：接口信息表
+
+api_uri: 接口uri,
+request_type: 请求类型，GET,POST,DELETE,PUS,
+api_name: 接口名称，
+api_des: 接口描述，
+api_swagger_uri: 接口地址，
+online_date: 上线时间，
+update_date: 接口最后修改时间，
+api_status: 接口状态（正常、要下线、已下线）
+
+2. 系统管理（人工维护）
+系统标识（唯一）、系统名称、认证密码、系统简介、录入时间、录入人、最后修改时间、修改人
+
+页面（参考用户管理）
+1）查询
+筛选条件：系统标识、系统名称（模糊）
+
+2）允许新增、修改（系统标识不允许修改）、删除
+
+3）接口权限
+参考角色管理中的资源分配
+
+3）标签权限
+参考角色管理中的资源分配
+
+4）特征权限
+参考角色管理中的资源分配
+
+5）标签排序
+
+表：
+
+表名 other_system_info：接入系统信息表
+sys_id: 系统标识
+sys_name: 系统名称
+sys_passwd: 认证密码
+sys_des: 系统简介
+sys_status: 是否有效
+create_date: 录入时间
+create_emply_id: 录入人编号
+update_date:修改时间
+update_emply_id: 修改人编
+
+表名 other_system_api_aut 接入系统接口权限表
+sys_id: 系统标识
+api_uri: 接口uri,
+request_type: 请求类型
+
+表名 other_system_label_aut： 接入系统标签权限表
+sys_id: 系统标识
+line_id: 条线编号
+label_cls_no: 标签编号
+
+表名 other_system_ftr_aut 接入系统特征权限
+sys_id: 系统标识
+line_id: 条线编号
+ftr_itm_id: 特征编号
+
+表名：other_system_label_order
+sys_id: 系统标识
+line_id: 条线编号
+label_cls_no: 标签编号
+order_number: 顺序（数字）

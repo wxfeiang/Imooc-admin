@@ -40,6 +40,7 @@ export default {
             this.commit('user/setToken', data.token)
 
             // 跳转
+
             router.push('/')
             // 保存当前登陆时间
             setTimeStamp()

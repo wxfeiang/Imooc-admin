@@ -80,17 +80,33 @@ module.exports = {
   //     }
   //   },
 
-  // 所有 webpack-dev-server 的选项都支持
+  // webpack-dev-server 相关配置 https://webpack.js.org/configuration/dev-server/
   devServer: {
+    // host: 'localhost',
+    host: '0.0.0.0',
+    port: 8000, // 端口号
+    // https: false, //
+    // open: true, // 配置自动启动浏览器
+    // hotOnly: true, // 热更新
     proxy: {
+      // 配置自动启动浏览器
       '/api': {
         // target: 'https://api.imooc-admin.lgdsunday.club/',
-        target: 'http://47.99.93.97/',
+        // target: 'http://47.99.93.97/',
+        target: 'http://localhost:3000',
         changeOrigin: true,
+        // ws: true,//websocket支持
+        // secure: false,
         // logLevel: 'debug', // 调试的时候可查看转发的路径
         pathRewrite: {
-          '^/api': '/api/mock'
+          '^/api': '/api' // '^/api': '/api/mock'
         }
+      },
+      '/XX2/*': {
+        target: 'http://172.12.12.12:2018',
+        changeOrigin: true,
+        // ws: true,//websocket支持
+        secure: false
       }
     }
   },

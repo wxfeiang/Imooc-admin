@@ -2,7 +2,7 @@
   <!--  :header-cell-class-name="tableStyle" -->
   <el-table
     empty-text="暂无数据"
-    :data="tableData"
+    :data="tableData.list"
     style="width: 100%"
     ref="tables"
     @selection-change="selection"
@@ -44,13 +44,26 @@
       </el-table-column>
     </template>
   </el-table>
+  <!-- 完整功能分页 -->
+  <el-pagination
+    v-model:currentPage="page"
+    v-model:page-size="limt"
+    :page-sizes="[10, 20, 30, 40]"
+    :small="small"
+    :disabled="disabled"
+    :background="background"
+    layout="total, sizes, prev, pager, next, jumper"
+    :total="tableData.total"
+    @size-change="handleSizeChange"
+    @current-change="handleCurrentChange"
+  />
 </template>
 <script setup>
-import { defineProps, onBeforeMount } from 'vue'
+import { defineEmits, defineProps, onBeforeMount, ref } from 'vue'
 
 const props = defineProps({
   tableData: {
-    type: Array,
+    type: Object,
     required: true
   },
   congigTable: {
@@ -58,11 +71,35 @@ const props = defineProps({
     required: true
   }
 })
+
 const selection = () => {
   console.log('选择---')
 }
 onBeforeMount(() => {
   console.log(props.congigTable, '----')
 })
+const page = ref(1)
+const limt = ref(10)
+const small = ref(false)
+const background = ref(true)
+const disabled = ref(false)
+
+const emits = defineEmits(['pagination'])
+
+const handleSizeChange = (val) => {
+  const pageMessg = {
+    page: page.value,
+    limt: limt.value
+  }
+
+  emits('pagination', pageMessg)
+}
+const handleCurrentChange = (val) => {
+  const pageMessg = {
+    page: page.value,
+    limt: limt.value
+  }
+  emits('pagination', pageMessg)
+}
 </script>
 <style lang="scss" scoped></style>
