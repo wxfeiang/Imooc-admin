@@ -26,9 +26,17 @@ export const getUserInfo = (data) => {
   })
 }
 
-export const getoutheMenu = (data) => {
+export const getpicData = (params) => {
   return requset({
-    url: '/acjson/outheMenu',
+    url: '/acjson/picData',
+    method: 'GET',
+    params
+  })
+}
+
+export const getpicDataDetl = (params) => {
+  return requset({
+    url: '/acjson/picDataDetl?id=' + params,
     method: 'GET'
   })
 }

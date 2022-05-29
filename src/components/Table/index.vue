@@ -52,9 +52,9 @@
     <!-- 完整功能分页 -->
     <el-pagination
       v-if="tableData.total > 0"
-      v-model:currentPage="page"
-      v-model:page-size="limt"
-      :page-sizes="[10, 20, 30, 40]"
+      :value:currentPage="page.page"
+      :value:page-size="page.limt"
+      :page-sizes="pageSizes"
       :small="small"
       :disabled="disabled"
       :background="background"
@@ -80,6 +80,18 @@ const props = defineProps({
   loading: {
     type: Boolean,
     default: false
+  },
+  page: {
+    type: Object,
+    default: () => ({
+      page: 1,
+      limt: 10
+    }),
+    required: true
+  },
+  pageSizes: {
+    type: Array,
+    default: () => [10, 20, 30, 40]
   }
 })
 const emptyDesc = ref('未查询到相关数据！')
@@ -87,29 +99,29 @@ const selection = () => {
   console.log('选择---')
 }
 onBeforeMount(() => {
-  console.log(props.congigTable, '----')
+  console.log(props.congigTable, props.page, '----')
 })
-const page = ref(1)
-const limt = ref(10)
+
 const small = ref(false)
 const background = ref(true)
 const disabled = ref(false)
 
-const emits = defineEmits(['pagination'])
+const emits = defineEmits(['pagination', 'update:page'])
 
 const handleSizeChange = (val) => {
   const pageMessg = {
-    page: page.value,
-    limt: limt.value
+    page: props.page.size,
+    limt: val
   }
-
+  // emits('update:page', val)
   emits('pagination', pageMessg)
 }
 const handleCurrentChange = (val) => {
   const pageMessg = {
-    page: page.value,
-    limt: limt.value
+    page: val,
+    limt: props.page.limt
   }
+  // emits('update:page', val)
   emits('pagination', pageMessg)
 }
 </script>
