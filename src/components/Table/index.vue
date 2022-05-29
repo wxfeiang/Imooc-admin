@@ -83,10 +83,6 @@ const props = defineProps({
   },
   page: {
     type: Object,
-    default: () => ({
-      size: 1,
-      limt: 10
-    }),
     required: true
   },
   pageSizes: {

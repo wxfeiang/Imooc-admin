@@ -8,6 +8,7 @@ import router from './router'
 import store from './store'
 
 const app = createApp(App)
+app.config.warnHandler = () => null // 消除烦人的控制台警告信息
 installElementPlus(app)
 
 app.use(store).use(router).use(i18n).mount('#app')

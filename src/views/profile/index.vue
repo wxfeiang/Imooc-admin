@@ -3,28 +3,7 @@
     {{ $t('msg.test') }}
   </div> -->
   <!-- serch -->
-  <div class="serch">
-    <el-row :gutter="20">
-      <el-col :span="6"
-        ><div class="grid-content bg-purple" />
-        检索1</el-col
-      >
-      <el-col :span="6"
-        ><div class="grid-content bg-purple" />
-        {{ page.size }} {{ page.limt }}</el-col
-      >
-      <el-col :span="6"
-        ><div class="grid-content bg-purple" />
-        2</el-col
-      >
-      <el-col :span="6"
-        ><div class="grid-content bg-purple" />
-        <el-button type="primary" @click="queryList" size="mini"
-          >查询</el-button
-        ></el-col
-      >
-    </el-row>
-  </div>
+
   <SeachTable> fghh </SeachTable>
   <div class="table">
     <Table
