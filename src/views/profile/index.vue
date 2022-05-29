@@ -11,7 +11,7 @@
       >
       <el-col :span="6"
         ><div class="grid-content bg-purple" />
-        2</el-col
+        {{ page.size }} {{ page.limt }}</el-col
       >
       <el-col :span="6"
         ><div class="grid-content bg-purple" />
@@ -32,11 +32,12 @@
       :loading="loading"
       :tableData="tableData"
       @pagination="pagination"
+      :pageConfig="{ hasPagination: true }"
       v-model:page="page"
       border
       stripe
       size="small"
-      height="400"
+      height="500"
     >
       <template v-slot:action="slotdata">
         <!-- {{ slotdata.data.cont }} -->
@@ -98,7 +99,8 @@ const congigTable = ref({
     {
       label: '日期',
       prop: 'time',
-      align: 'left'
+      align: 'left',
+      width: 80
     },
     {
       label: '操作',
@@ -115,15 +117,13 @@ onBeforeMount(() => {
   // console.log(props.congigTable, props.page, '----')
 })
 const pagination = (val) => {
-  page.value.size = val.page
-  page.value.limt = val.limt
-  console.log(val, '分页参数', page.value)
+  page.value = { ...val }
   getList()
 }
 
 const queryList = () => {
-  params.value.limt = 10
-  params.value.size = 1
+  page.value.limt = 10
+  page.value.size = 1
   getList()
 }
 

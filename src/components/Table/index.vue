@@ -51,14 +51,14 @@
     </el-table>
     <!-- 完整功能分页 -->
     <el-pagination
-      v-if="tableData.total > 0"
-      :value:currentPage="page.page"
-      :value:page-size="page.limt"
+      v-if="tableData.total > 0 && !congigTable.hasPagination"
+      :currentPage="page.size"
+      :page-size="page.limt"
       :page-sizes="pageSizes"
       :small="small"
       :disabled="disabled"
       :background="background"
-      layout="total, sizes, prev, pager, next, jumper"
+      :layout="layout"
       :total="tableData.total"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
@@ -84,7 +84,7 @@ const props = defineProps({
   page: {
     type: Object,
     default: () => ({
-      page: 1,
+      size: 1,
       limt: 10
     }),
     required: true
@@ -92,14 +92,19 @@ const props = defineProps({
   pageSizes: {
     type: Array,
     default: () => [10, 20, 30, 40]
+  },
+  layout: {
+    type: String,
+    default: () => 'total, sizes, prev, pager, next, jumper'
   }
 })
+
 const emptyDesc = ref('未查询到相关数据！')
 const selection = () => {
   console.log('选择---')
 }
 onBeforeMount(() => {
-  console.log(props.congigTable, props.page, '----')
+  console.log(props.congigTable, props.page, '--props.page--')
 })
 
 const small = ref(false)
@@ -110,18 +115,20 @@ const emits = defineEmits(['pagination', 'update:page'])
 
 const handleSizeChange = (val) => {
   const pageMessg = {
-    page: props.page.size,
+    size: props.page.size,
     limt: val
   }
-  // emits('update:page', val)
+  console.log(props.page, pageMessg, 'pageMessg')
+
+  // emits('update:page', pageMessg)
   emits('pagination', pageMessg)
 }
 const handleCurrentChange = (val) => {
   const pageMessg = {
-    page: val,
+    size: val,
     limt: props.page.limt
   }
-  // emits('update:page', val)
+  //  emits('update:page', pageMessg)
   emits('pagination', pageMessg)
 }
 </script>
