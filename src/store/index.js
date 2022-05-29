@@ -1,12 +1,8 @@
-import { createStore } from 'vuex'
-import getters from './getters'
-import app from './modules/app'
-import user from './modules/user'
+import { createPinia } from 'pinia'
+const store = createPinia()
 
-export default createStore({
-  getters,
-  modules: {
-    user,
-    app
-  }
-})
+export const setupStore = (app) => {
+  app.use(store)
+}
+
+export { store }
