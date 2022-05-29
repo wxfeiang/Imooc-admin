@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "commit": "git-cz",
@@ -15,7 +15,7 @@
     "core-js": "^3.6.5",
     "crypto-js": "^4.1.1",
     "driver.js": "^0.9.8",
-    "element-plus": "^1.0.2-beta.28",
+    "element-plus": "^2.2.2",
     "md5": "^2.3.0",
     "rest-css": "^0.1.2",
     "screenfull": "^5.1.0",
