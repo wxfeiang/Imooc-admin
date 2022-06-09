@@ -4,7 +4,33 @@
   </div> -->
   <!-- serch -->
 
-  <SeachTable> fghh </SeachTable>
+  <SeachTable>
+    <div class="send">
+      <el-button type="primary" @click="queryList" size="mini">重置</el-button>
+
+      <el-button type="primary" @click="putData" size="mini">putData</el-button>
+      <el-button type="primary" @click="DeleteData" size="mini"
+        >DeleteData</el-button
+      >
+
+      <el-button type="primary" @click="404" size="mini">404</el-button>
+
+      <el-upload
+        class="upload-demo"
+        action="/api/users/multer"
+        :on-preview="handlePreview"
+        :on-remove="handleRemove"
+        :before-remove="beforeRemove"
+        :limit="1"
+        :on-exceed="handleExceed"
+        :file-list="fileList"
+        :data="updata"
+        :name="apiname"
+      >
+        <el-button type="primary">文件上传</el-button>
+      </el-upload>
+    </div>
+  </SeachTable>
   <div class="table">
     <Table
       :congigTable="congigTable"
@@ -33,14 +59,15 @@
   </div>
 </template>
 <script setup>
-import { getpicData, getpicDataDetl } from '@/api/sys'
+import { Delete, e404Data, getpicData, getpicDataDetl, put } from '@/api/sys'
 import SeachTable from '@/components/SeachTable'
 import Table from '@/components/Table'
+import { ElMessage } from 'element-plus'
 import { onBeforeMount, ref } from 'vue'
 
 //
 const params = ref({
-  pictype: 'wangyouzipai'
+  seachData: ''
 })
 const page = ref({
   size: 1,
@@ -56,28 +83,40 @@ const congigTable = ref({
   xh: true,
   columns: [
     {
-      label: '标题 ',
-      prop: 'title',
+      label: '姓名',
+      prop: 'username',
       align: 'center',
 
       'show-overflow-tooltip': true
     },
 
     {
-      label: 'URL',
-      prop: 'id',
+      label: '职业',
+      prop: 'classify',
       align: 'center',
       'show-overflow-tooltip': true
     },
     {
-      label: 'type',
-      prop: 'type',
+      label: '性别',
+      prop: 'sex',
+      align: 'center',
+      width: 120
+    },
+    {
+      label: '年龄',
+      prop: 'score',
+      align: 'center',
+      width: 120
+    },
+    {
+      label: '登录',
+      prop: 'logins',
       align: 'left',
       width: 120
     },
     {
-      label: '日期',
-      prop: 'time',
+      label: '签名',
+      prop: 'sign',
       align: 'left',
       width: 80
     },
@@ -101,14 +140,15 @@ const pagination = (val) => {
 }
 
 const queryList = () => {
-  page.value.limt = 10
   page.value.size = 1
+  page.value.limt = 10
+
   getList()
 }
 
 // 查看
 const detilData = async (data) => {
-  const res = await getpicDataDetl(data.id)
+  const res = await getpicDataDetl({ id: data.id })
   console.log(res, 'del')
 }
 
@@ -116,13 +156,47 @@ const getList = async () => {
   loading.value = true
   const data = { ...params.value, ...page.value }
   const res = await getpicData(data)
-  if (res && res.list.length > 0) {
-    loading.value = false
-    tableData.value.total = res.total
-    tableData.value.list = res.list
-  }
+
+  loading.value = false
+  tableData.value.total = res.total
+  tableData.value.list = res.list
 }
 getList()
+const putData = async (data) => {
+  const res = await put(1)
+  console.log(res, 'del')
+}
+const DeleteData = async (data) => {
+  const res = await Delete({ id: 1 })
+  console.log(res, 'del')
+}
+const e404 = async (data) => {
+  const res = await e404Data()
+  console.log(res, 'del')
+}
+
+const fileList = ref([])
+
+const updata = ref({
+  seachData: '文件上传测试' //  额外上传参数
+})
+const apiname = ref('file') // 上传字段名  默认 file
+
+const handleRemove = (file, uploadFiles) => {
+  console.log(file, uploadFiles, '----')
+}
+
+const handlePreview = (uploadFile) => {
+  console.log(uploadFile)
+}
+
+const handleExceed = (files, uploadFiles) => {
+  ElMessage.warning(
+    `The limit is 3, you selected ${files.length} files this time, add up to ${
+      files.length + uploadFiles.length
+    } totally`
+  )
+}
 </script>
 <style lang="scss" scoped>
 //@import url(); 引入公共css类

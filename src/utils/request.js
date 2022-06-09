@@ -2,12 +2,12 @@ import store from '@/store'
 import { isCheckTimeout } from '@/utils/auth'
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
-
-console.log(
-  process.env.NODE_ENV,
-  process.env.VUE_APP_BASE_API,
-  'process.env.VUE_APP_BASE_API-----'
-)
+import { Encrypt } from './encry'
+// console.log(
+//   process.env.NODE_ENV,
+//   process.env.VUE_APP_BASE_API,
+//   'process.env.VUE_APP_BASE_API-----'
+// )
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
@@ -16,6 +16,15 @@ const service = axios.create({
 // 请求拦截  设置统一header
 service.interceptors.request.use(
   (config) => {
+    console.log(config)
+
+    // params  data 进行加密
+    config.data = { data: config.data ? Encrypt(config.data) : '' }
+    config.params = { data: config.params ? Encrypt(config.params) : '' }
+    // config.params = Encrypt(config.params)
+
+    console.log(config)
+
     if (store.getters.token) {
       // token 是否过期
       if (isCheckTimeout()) {

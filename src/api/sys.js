@@ -19,7 +19,7 @@ export const login = (data) => {
  * @returns
  */
 
-export const getUserInfo = (data) => {
+export const getUserInfo = (params) => {
   return requset({
     url: '/mock/sys/profile',
     method: 'GET'
@@ -28,7 +28,7 @@ export const getUserInfo = (data) => {
 
 export const getpicData = (params) => {
   return requset({
-    url: '/acjson/picData',
+    url: '/acjson/layui',
     method: 'GET',
     params
   })
@@ -36,7 +36,30 @@ export const getpicData = (params) => {
 
 export const getpicDataDetl = (params) => {
   return requset({
-    url: '/acjson/picDataDetl?id=' + params,
+    url: '/acjson/picDataDetl',
+    method: 'GET',
+    params
+  })
+}
+
+export const put = (params) => {
+  return requset({
+    url: '/api/acjson/put/' + params,
+    method: 'PUT'
+  })
+}
+
+export const Delete = (path) => {
+  return requset({
+    url: '/acjson/delete/',
+    method: 'DELETE',
+    path
+  })
+}
+
+export const e404Data = () => {
+  return requset({
+    url: '/acjson/picDataDetl?id=11',
     method: 'GET'
   })
 }

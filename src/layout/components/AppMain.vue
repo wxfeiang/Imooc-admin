@@ -1,7 +1,4 @@
 <template>
-  <!-- <div class="appMin" id="">
-
-  </div> -->
   <el-card class="box-card appMin">
     <router-view />
   </el-card>

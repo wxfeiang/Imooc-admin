@@ -10,6 +10,7 @@ $subMenuHover: #001528;
 
 $sideBarWidth: 200px;
 $sideBarClsoeWidth: 60px;
+$cardBg: #fff;
 
 // js 和css  共享变量
 :export {
@@ -21,4 +22,5 @@ $sideBarClsoeWidth: 60px;
     subMenuBg: $subMenuBg;
     subMenuHover: $subMenuHover;
     sideBarWidth: $sideBarWidth;
+    cardBg: $cardBg;
 }

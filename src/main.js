@@ -1,8 +1,8 @@
 import i18n from '@/i18n'
+import '@/utils/permisssion' //  倒入路由守卫
 import 'rest-css'
 import { createApp } from 'vue'
 import App from './App.vue'
-import './permisssion' //  倒入路由守卫
 import installElementPlus from './plugins/element'
 import router from './router'
 import store from './store'
