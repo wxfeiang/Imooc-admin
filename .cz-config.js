@@ -48,7 +48,7 @@ module.exports = {
   }),
 
   // 是否允许自定义填写 scope，在 scope 选择的时候，会有 empty 和 custom 可以选择。
-  // allowCustomScopes: true,
+  allowCustomScopes: true,
 
   // allowTicketNumber: false,
   // isTicketNumberRequired: false,
@@ -56,7 +56,7 @@ module.exports = {
   // ticketNumberRegExp: '\\d{1,5}',
 
   // 针对每一个 type 去定义对应的 scopes，例如 fix
-  /*
+
   scopeOverrides: {
     fix: [
       { name: 'merge' },
@@ -65,7 +65,6 @@ module.exports = {
       { name: 'unitTest' }
     ]
   },
-  */
 
   // 交互提示信息
   messages: {
@@ -79,7 +78,6 @@ module.exports = {
     footer: '列举出所有变更的 ISSUES CLOSED（可选）。 例如: #31, #34：\n',
     confirmCommit: '确认提交？'
   },
-
   // 设置只有 type 选择了 feat 或 fix，才询问 breaking message
   allowBreakingChanges: ['feat', 'fix'],
 
@@ -89,7 +87,7 @@ module.exports = {
   // subject 限制长度
   subjectLimit: 100,
   breaklineChar: '|', // 支持 body 和 footer
-  footerPrefix: 'ISSUES CLOSED:',
+  // footerPrefix: 'ISSUES CLOSED:',
   askForBreakingChangeFirst: true
 
   // 测试关闭is
