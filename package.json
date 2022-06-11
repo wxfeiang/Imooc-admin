@@ -47,6 +47,7 @@
     "lint-staged": "^12.1.4",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
+    "standard-version": "^9.5.0",
     "vue-cli-plugin-element-plus": "0.0.13"
   },
   "config": {

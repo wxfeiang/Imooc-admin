@@ -3,7 +3,9 @@
     {{ $t('msg.test') }}
   </div> -->
   <!-- serch -->
-
+  <el-button type="primary" size="default"></el-button>
+  <!-- BUG -->
+  <!-- //TODO:11222-->
   <SeachTable> fghh </SeachTable>
   <div class="table">
     <Table
