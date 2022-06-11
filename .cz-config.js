@@ -49,7 +49,6 @@ module.exports = {
 
   // 是否允许自定义填写 scope，在 scope 选择的时候，会有 empty 和 custom 可以选择。
   allowCustomScopes: true,
-
   // allowTicketNumber: false,
   // isTicketNumberRequired: false,
   // ticketNumberPrefix: 'TICKET-',
@@ -79,10 +78,8 @@ module.exports = {
   },
   // 设置只有 type 选择了 feat 或 fix，才询问 breaking message
   allowBreakingChanges: ['feat', 'fix'],
-
   // 跳过要询问的步骤
   //skipQuestions: ['body', 'footer'],
-
   // subject 限制长度
   subjectLimit: 100,
   breaklineChar: '|', // 支持 body 和 footer
