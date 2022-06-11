@@ -89,6 +89,4 @@ module.exports = {
   breaklineChar: '|', // 支持 body 和 footer
   // footerPrefix: 'ISSUES CLOSED:',
   askForBreakingChangeFirst: true
-
-  // 测试关闭is
 }
