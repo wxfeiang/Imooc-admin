@@ -79,7 +79,6 @@ module.exports = {
   //       less: {}
   //     }
   //   },
-
   // webpack-dev-server 相关配置 https://webpack.js.org/configuration/dev-server/
   devServer: {
     // host: 'localhost',
