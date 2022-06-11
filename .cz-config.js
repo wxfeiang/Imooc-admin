@@ -67,15 +67,17 @@ module.exports = {
 
   // 交互提示信息
   messages: {
-    type: '确保本次提交遵循 vue 规范！\n选择你要提交的类型：',
-    scope: '\n选择一个 scope（可选）：',
-    customScope: '请输入自定义的 scope：', // 选择 scope: custom 时会出下面的提示
-    subject: '填写简短精炼的变更描述：\n',
-    body: '填写更加详细的变更描述（可选）。使用 "|" 换行：\n',
-    breaking: '列举非兼容性重大的变更（可选）：\n',
-    footer: '列举出所有变更的 ISSUES CLOSED（可选）。 例如: #31, #34：\n',
-    confirmCommit: '确认提交？'
+    type: '选择一种你的提交类型:',
+    scope: '选择一个scope (可选):',
+    // used if allowCustomScopes is true
+    customScope: 'Denote the SCOPE of this change:',
+    subject: '短说明:\n',
+    body: '长说明，使用"|"换行(可选)：\n',
+    breaking: '非兼容性说明 (可选):\n',
+    footer: '关联关闭的issue，例如：#31, #34(可选):\n',
+    confirmCommit: '确定提交说明?'
   },
+
   // 设置只有 type 选择了 feat 或 fix，才询问 breaking message
   allowBreakingChanges: ['feat', 'fix'],
   // 跳过要询问的步骤
