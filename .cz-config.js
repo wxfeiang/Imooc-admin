@@ -70,8 +70,7 @@ module.exports = {
   messages: {
     type: '确保本次提交遵循 vue 规范！\n选择你要提交的类型：',
     scope: '\n选择一个 scope（可选）：',
-    // 选择 scope: custom 时会出下面的提示
-    customScope: '请输入自定义的 scope：',
+    customScope: '请输入自定义的 scope：', // 选择 scope: custom 时会出下面的提示
     subject: '填写简短精炼的变更描述：\n',
     body: '填写更加详细的变更描述（可选）。使用 "|" 换行：\n',
     breaking: '列举非兼容性重大的变更（可选）：\n',
@@ -89,5 +88,4 @@ module.exports = {
   breaklineChar: '|', // 支持 body 和 footer
   // footerPrefix: 'ISSUES CLOSED:',
   askForBreakingChangeFirst: true
-  // fixes #12
 }
