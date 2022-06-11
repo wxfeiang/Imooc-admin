@@ -57,14 +57,14 @@ module.exports = {
 
   // 针对每一个 type 去定义对应的 scopes，例如 fix
 
-  scopeOverrides: {
-    fix: [
-      { name: 'merge' },
-      { name: 'style' },
-      { name: 'e2eTest' },
-      { name: 'unitTest' }
-    ]
-  },
+  // scopeOverrides: {
+  //   fix: [
+  //     { name: 'merge' },
+  //     { name: 'style' },
+  //     { name: 'e2eTest' },
+  //     { name: 'unitTest' }
+  //   ]
+  // },
 
   // 交互提示信息
   messages: {
