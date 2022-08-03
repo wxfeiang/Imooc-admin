@@ -2,7 +2,6 @@ import store from '@/store'
 import { isCheckTimeout } from '@/utils/auth'
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
-import { Encrypt } from './encry'
 // console.log(
 //   process.env.NODE_ENV,
 //   process.env.VUE_APP_BASE_API,
@@ -19,13 +18,13 @@ service.interceptors.request.use(
     console.log(config)
 
     // params  data 进行加密
-    config.data = { data: config.data ? Encrypt(config.data) : '' }
-    config.params = { data: config.params ? Encrypt(config.params) : '' }
-    // config.params = Encrypt(config.params)
+    // config.data = { data: config.data ? Encrypt(config.data) : '' }
+    // config.params = { data: config.params ? Encrypt(config.params) : '' }
+    // // config.params = Encrypt(config.params)
 
-    console.log(config)
-
-    if (store.getters.token) {
+    // console.log(config)
+    console.log(store.getters.token, 'store.getters.token')
+    if (store.getters.token && store.getters.token.length > 0) {
       // token 是否过期
       if (isCheckTimeout()) {
         // 退出 logout
@@ -100,7 +99,7 @@ service.interceptors.response.use(
           error.message = 'http版本不支持该请求'
           break
         default:
-          error.message = `连接错误${error.response.status}`
+          error.message = `连接错误${error.response.status},请联系系统管理员！`
       }
     } else {
       // 超时处理   可从接口返回数据判断

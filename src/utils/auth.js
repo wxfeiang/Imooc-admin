@@ -1,3 +1,10 @@
+/*
+ * @Author: wxfeiang
+ * @Description:
+ * @Date: 2022-01-15 15:29:43
+ * @LastEditTime: 2022-07-01 23:49:45
+ * @FilePath: /Imooc-admin/src/utils/auth.js
+ */
 import { TIME_SAMP, TOKEN_TIMEOUT_VALUE } from '@/constant'
 import { getItem, setItem } from '@/utils/storeage'
 

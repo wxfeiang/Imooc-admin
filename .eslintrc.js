@@ -1,3 +1,10 @@
+/*
+ * @Author: wxfeiang
+ * @Description:
+ * @Date: 2022-01-02 22:07:30
+ * @LastEditTime: 2022-06-28 23:49:57
+ * @FilePath: /Imooc-admin/.eslintrc.js
+ */
 module.exports = {
   root: true,
   env: {
@@ -13,6 +20,7 @@ module.exports = {
     'space-before-function-paren': 'off',
     'no-unused-vars': 0, // 变量未使用
     eqeqeq: 0, //三等号
-    'prefer-const': 0 //
+    'prefer-const': 0, //
+    'no-callback-literal': 0
   }
 }

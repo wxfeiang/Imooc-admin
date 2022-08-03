@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^0.2.4",
+    "@smallwei/avue": "^3.1.0",
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "crypto-js": "^4.1.1",

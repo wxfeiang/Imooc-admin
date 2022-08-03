@@ -92,8 +92,8 @@ module.exports = {
       // 配置自动启动浏览器
       '/api': {
         // target: 'https://api.imooc-admin.lgdsunday.club/',
-        // target: 'http://47.99.93.97/',
-        target: 'http://localhost:3000',
+        target: 'http://47.99.93.97/',
+        // target: 'http://localhost:3000',
         changeOrigin: true,
         // ws: true,//websocket支持
         // secure: false,

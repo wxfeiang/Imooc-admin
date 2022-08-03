@@ -3,34 +3,6 @@
     {{ $t('msg.test') }}
   </div> -->
   <!-- serch -->
-
-  <SeachTable>
-    <div class="send">
-      <el-button type="primary" @click="queryList" size="mini">重置</el-button>
-
-      <el-button type="primary" @click="putData" size="mini">putData</el-button>
-      <el-button type="primary" @click="DeleteData" size="mini"
-        >DeleteData</el-button
-      >
-
-      <el-button type="primary" @click="404" size="mini">404</el-button>
-
-      <el-upload
-        class="upload-demo"
-        action="/api/users/multer"
-        :on-preview="handlePreview"
-        :on-remove="handleRemove"
-        :before-remove="beforeRemove"
-        :limit="1"
-        :on-exceed="handleExceed"
-        :file-list="fileList"
-        :data="updata"
-        :name="apiname"
-      >
-        <el-button type="primary">文件上传</el-button>
-      </el-upload>
-    </div>
-  </SeachTable>
   <div class="table">
     <Table
       :congigTable="congigTable"
@@ -60,7 +32,6 @@
 </template>
 <script setup>
 import { Delete, e404Data, getpicData, getpicDataDetl, put } from '@/api/sys'
-import SeachTable from '@/components/SeachTable'
 import Table from '@/components/Table'
 import { ElMessage } from 'element-plus'
 import { onBeforeMount, ref } from 'vue'
@@ -86,7 +57,6 @@ const congigTable = ref({
       label: '姓名',
       prop: 'username',
       align: 'center',
-
       'show-overflow-tooltip': true
     },
 
