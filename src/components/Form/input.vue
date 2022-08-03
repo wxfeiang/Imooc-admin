@@ -1,8 +1,8 @@
 <!--
  * @Author: wxfeiang
- * @Description:
+ * @Description: 表单输入组件
  * @Date: 2022-07-19 14:18:00
- * @LastEditTime: 2022-08-03 11:08:13
+ * @LastEditTime: 2022-08-03 14:57:29
  * @FilePath: /Imooc-admin/src/components/Form/input.vue
 -->
 <template>
