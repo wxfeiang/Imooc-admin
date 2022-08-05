@@ -1,8 +1,8 @@
 <!--
  * @Author: wxfeiang
- * @Description: 基础组件
+ * @Description: from组件
  * @Date: 2022-06-20 18:36:03
- * @LastEditTime: 2022-08-05 11:34:55
+ * @LastEditTime: 2022-08-05 21:08:26
  * @FilePath: /Imooc-admin/src/components/SeachTable/index.vue
 -->
 <template>
@@ -26,6 +26,7 @@
                 :itemData="item"
                 :model-value="modelValue[`${item.prop}`]"
                 @update:modelValue="handleValueChange($event, item.prop)"
+                @callbackItem="callbackItem"
               >
               </component>
             </el-form-item>
@@ -124,6 +125,19 @@ const resetForm = (data) => {
 }
 const callback = (data) => {
   data.callback(props.modelValue)
+}
+const callbackItem = (data) => {
+  if (
+    data.click &&
+    Object.prototype.toString.call(data.click) === '[object Function]'
+  ) {
+    data.click(data)
+  } else if (
+    data.callback &&
+    Object.prototype.toString.call(data.callback) === '[object Function]'
+  ) {
+    data.callback(data)
+  }
 }
 const butSty = ref({
   'text-align': 'center'

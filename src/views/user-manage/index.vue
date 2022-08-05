@@ -1,8 +1,8 @@
 <!--
  * @Author: wxfeiang
- * @Description: 检索组件
+ * @Description: 案例测试显示页面
  * @Date: 2022-01-15 22:01:21
- * @LastEditTime: 2022-08-05 16:32:02
+ * @LastEditTime: 2022-08-05 22:26:05
  * @FilePath: /Imooc-admin/src/views/user-manage/index.vue
 -->
 <template>
@@ -38,15 +38,15 @@ const DIC = {
   ],
   Checkbox: [
     {
-      label: '第一个',
+      label: '元',
       value: '111'
     },
     {
-      label: '第二个',
+      label: '角',
       value: '222'
     },
     {
-      label: '第三个个',
+      label: '分',
       value: '333'
       // disabled: true
     }
@@ -60,9 +60,9 @@ const fields = ref({
   word: '',
   textarea: '',
   setnumber: 1,
-  checkbox: ['111']
+  checkbox: ['222'],
+  checkbox2: ['222']
 })
-
 // 表单配置项目
 const option = ref({
   labelWidth: 80,
@@ -75,7 +75,10 @@ const option = ref({
       type: 'input',
       prop: 'name',
       required: true,
-      prefixIcon: 'Apple' // 单独组件显示 不会有任何操作  前缀
+      prefixIcon: 'Apple', // 单独组件显示 不会有任何操作  前缀
+      click: (data) => {
+        console.log('点击事件触发回调函数===>', data)
+      }
     },
     {
       col: 6,
@@ -84,8 +87,8 @@ const option = ref({
       required: true,
       prop: 'age',
       suffix: 'Search', // TODO: 图标有事件
-      click: ({ value, column }) => {
-        console.log('dianji le --')
+      click: (data) => {
+        console.log('点击事件触发回调函数===>', data)
       }
     },
     {
@@ -102,14 +105,17 @@ const option = ref({
       type: 'inputnumber',
       prop: 'setnumber'
     },
-
     {
       col: 12,
-      label: '网站',
+      label: '网站11',
       type: 'input',
       prop: 'word',
       append: true,
-      appendButton: 'Coin'
+      appendButton: 'Coin',
+      callback: function (data) {
+        console.log('后缀触发回调函数===>', data, 'this', this)
+        this.appendButton = 'Search'
+      }
     },
     {
       col: 12,
@@ -121,11 +127,16 @@ const option = ref({
     },
     {
       col: 12,
-      label: '网站22',
+      label: '后缀选择',
       type: 'input',
       prop: 'word',
       append: true,
-      dicData: DIC.VAILD
+      //  appendWidth: '140', //h
+      selectVal: '111',
+      dicData: DIC.Checkbox,
+      callback: (data) => {
+        console.log('触发回调函数===>', data)
+      }
     },
     {
       col: 12,
@@ -145,7 +156,7 @@ const option = ref({
       'show-word-limit': true
     },
     {
-      col: 8,
+      col: 12,
       label: '多选框',
       type: 'checkbox',
       prop: 'checkbox',
@@ -154,7 +165,7 @@ const option = ref({
       dicData: DIC.Checkbox
     },
     {
-      col: 8,
+      col: 12,
       label: '不全',
       type: 'checkbox',
       prop: 'checkbox',
@@ -166,10 +177,11 @@ const option = ref({
       }
     },
     {
-      col: 8,
-      label: '其他',
+      col: 12,
+      label: '常用',
       type: 'checkbox',
-      prop: 'checkbox',
+      required: true,
+      prop: 'checkbox2',
       size: 'small',
       dicData: DIC.Checkbox
     }
