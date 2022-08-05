@@ -2,7 +2,7 @@
  * @Author: wxfeiang
  * @Description:
  * @Date: 2022-06-20 18:36:03
- * @LastEditTime: 2022-08-02 19:05:40
+ * @LastEditTime: 2022-08-04 11:01:18
  * @FilePath: /Imooc-admin/src/main.js
  */
 import i18n from '@/i18n'

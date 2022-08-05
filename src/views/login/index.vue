@@ -37,7 +37,6 @@
   </div>
 </template>
 <script setup>
-import { Avatar, Search } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 import { useStore } from 'vuex'
 import { validatePassword } from './rules.js'

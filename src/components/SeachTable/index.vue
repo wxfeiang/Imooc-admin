@@ -1,8 +1,8 @@
 <!--
  * @Author: wxfeiang
- * @Description: 搜索组件
+ * @Description: 基础组件
  * @Date: 2022-06-20 18:36:03
- * @LastEditTime: 2022-08-03 22:36:08
+ * @LastEditTime: 2022-08-05 11:09:06
  * @FilePath: /Imooc-admin/src/components/SeachTable/index.vue
 -->
 <template>
@@ -13,7 +13,7 @@
       ref="ruleFormRef"
       :label-position="option.labelPosition ? option.labelPosition : 'left'"
     >
-      <el-row :gutter="20">
+      <el-row :gutter="option.gutter ? option.gutter : '20'">
         <template v-for="(item, index) in formItem" :key="index">
           <el-col :span="item.col || 6">
             <el-form-item
@@ -21,11 +21,13 @@
               :rules="item.rules"
               :prop="item.prop"
             >
-              <Dinput
+              <component
+                :is="modules[item.inType]"
                 :itemData="item"
                 :model-value="modelValue[`${item.prop}`]"
                 @update:modelValue="handleValueChange($event, item.prop)"
-              />
+              >
+              </component>
             </el-form-item>
           </el-col>
         </template>
@@ -63,8 +65,17 @@
 </template>
 <script setup>
 import { defineEmits, defineProps, onBeforeMount, ref } from 'vue'
-import Dinput from '../Form/input.vue'
 import createRules from './createRules'
+// 自动化的规则，通type属性，自动读到目录组件 webpack
+const modules = {}
+const requireComponent = require.context('../control/', true, /index.vue$/)
+requireComponent.keys().forEach((item) => {
+  const key = item.split('/')
+  const name = key[1]
+  // 组件集成
+  modules[name] = requireComponent(item).default
+})
+
 const ruleFormRef = ref(null)
 const emit = defineEmits(['update:modelValue', 'resetFields'])
 const props = defineProps({
@@ -88,11 +99,14 @@ const handleValueChange = (value, field) => {
 const callSelf = (data) => {
   if (data.key === 'submit') {
     //  需要执行表单验证
-    submit(props.modelValue)
+    submit(data)
     return
   }
   if (data.key === 'rest') {
     resetForm(data)
+    console.log(props.modelValue)
+
+    return
   }
   if (
     data.callback &&
@@ -103,10 +117,20 @@ const callSelf = (data) => {
 }
 
 const submit = (data) => {
-  console.log(data, 'susubmit')
+  if (!ruleFormRef.value) return
+  ruleFormRef.value.validate((valid, fields) => {
+    if (valid) {
+      callback(data)
+    } else {
+      console.log('error submit!', fields)
+    }
+  })
 }
 const resetForm = (data) => {
   ruleFormRef.value.resetFields()
+
+  //  重置为初始化的时候的值
+  callback(data)
 }
 const callback = (data) => {
   data.callback(props.modelValue)

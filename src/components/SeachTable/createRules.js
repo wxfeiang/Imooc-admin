@@ -1,8 +1,8 @@
 /*
  * @Author: wxfeiang
- * @Description:
+ * @Description: 配置默认规则数据
  * @Date: 2022-08-03 22:03:55
- * @LastEditTime: 2022-08-03 22:36:35
+ * @LastEditTime: 2022-08-05 11:11:01
  * @FilePath: /Imooc-admin/src/components/SeachTable/createRules.js
  */
 import {
@@ -17,7 +17,7 @@ const createRules = (data, field) => {
     if (item.required) {
       const rule = {
         required: true,
-        message: item.message || createMessage(item),
+        message: item.message || typeProcessing(item).placeholder,
         trigger: 'blur'
       }
       rulesArray.push(rule)
@@ -67,22 +67,36 @@ const createRules = (data, field) => {
     if (item.rules && Array.isArray(item.rules) && item.rules.length > 0) {
       rulesArray = rulesArray.concat(item.rules)
     }
+    item.placeholder = item.placeholder
+      ? item.placeholder
+      : typeProcessing(item).placeholder
+    item.inType = typeProcessing(item).inType
     item.rules = rulesArray
   })
   return data
 }
 
-const createMessage = (data) => {
+const typeProcessing = (data) => {
   let msg = ''
+  let inType = ''
   switch (data.type) {
     case 'input':
+    case 'password':
+    case 'textarea':
+    case 'number':
       msg = '请输入'
+      inType = 'input'
       break
     case 'select':
     case 'checkbox':
       msg = '请选择'
+      inType = data.type
       break
   }
-  return `${msg}${data.label}`
+  return {
+    placeholder: msg + data.label,
+    inType
+  }
 }
+
 export default createRules
