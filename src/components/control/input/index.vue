@@ -2,7 +2,7 @@
  * @Author: wxfeiang
  * @Description: 表单输入组件
  * @Date: 2022-07-19 14:18:00
- * @LastEditTime: 2022-08-05 11:09:56
+ * @LastEditTime: 2022-08-05 15:58:37
  * @FilePath: /Imooc-admin/src/components/control/input/index.vue
 -->
 <template>
@@ -38,14 +38,14 @@
         <template v-if="itemData.appendButton">
           <el-button :icon="itemData.appendButton" @click="appendClick" />
         </template>
-        <template v-if="itemData.selectOption">
+        <template v-if="itemData.dicData">
           <el-select
             v-model="select"
             style="width: 100px"
             @change="handlerSelect"
           >
             <el-option
-              v-for="item in itemData.selectOption"
+              v-for="item in itemData.dicData"
               :key="item.value"
               :label="item.label"
               :value="item.value"

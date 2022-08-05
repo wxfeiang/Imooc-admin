@@ -2,7 +2,7 @@
  * @Author: wxfeiang
  * @Description: 检索组件
  * @Date: 2022-01-15 22:01:21
- * @LastEditTime: 2022-08-05 11:26:07
+ * @LastEditTime: 2022-08-05 16:32:02
  * @FilePath: /Imooc-admin/src/views/user-manage/index.vue
 -->
 <template>
@@ -14,15 +14,58 @@
 import { ref } from 'vue'
 
 import SeachTable from '@/components/SeachTable'
+// dict
+const DIC = {
+  VAILD: [
+    {
+      label: '真',
+      value: 'true'
+    },
+    {
+      label: '假',
+      value: 'false'
+    }
+  ],
+  SEX: [
+    {
+      label: '男',
+      value: 0
+    },
+    {
+      label: '女',
+      value: 1
+    }
+  ],
+  Checkbox: [
+    {
+      label: '第一个',
+      value: '111'
+    },
+    {
+      label: '第二个',
+      value: '222'
+    },
+    {
+      label: '第三个个',
+      value: '333'
+      // disabled: true
+    }
+  ]
+}
+// 表单初始值
 const fields = ref({
   name: 'sss',
   age: 19,
-  password: '',
+  passwrd: '',
   word: '',
-  textarea: ''
+  textarea: '',
+  setnumber: 1,
+  checkbox: ['111']
 })
+
+// 表单配置项目
 const option = ref({
-  labelWidth: 60,
+  labelWidth: 80,
   gutter: 20,
   // labelPosition: 'top',
   column: [
@@ -46,13 +89,20 @@ const option = ref({
       }
     },
     {
-      col: 12,
+      col: 6,
       label: '密码',
       type: 'password',
       required: true,
       prop: 'password',
       showPassword: true
     },
+    {
+      col: 6,
+      label: '计步器',
+      type: 'inputnumber',
+      prop: 'setnumber'
+    },
+
     {
       col: 12,
       label: '网站',
@@ -75,16 +125,7 @@ const option = ref({
       type: 'input',
       prop: 'word',
       append: true,
-      selectOption: [
-        {
-          value: '111',
-          label: '选项一'
-        },
-        {
-          value: '222',
-          label: '选项2'
-        }
-      ]
+      dicData: DIC.VAILD
     },
     {
       col: 12,
@@ -102,40 +143,44 @@ const option = ref({
       rows: 3,
       maxlength: 30,
       'show-word-limit': true
-    }
-  ],
-  actionBtn: [
+    },
     {
-      label: '新增',
-      key: 'add',
-      callback: (data) => {
-        console.log(
-          '更新后的-初始化组件',
-          data,
-          '=======> 需要回显',
-          fields.value
-        )
+      col: 8,
+      label: '多选框',
+      type: 'checkbox',
+      prop: 'checkbox',
+      required: true,
+      checkAll: true, //  是否加入全选功能 和单个禁用是冲突的
+      dicData: DIC.Checkbox
+    },
+    {
+      col: 8,
+      label: '不全',
+      type: 'checkbox',
+      prop: 'checkbox',
+      size: 'small',
+      disabled: true,
+      dicData: DIC.Checkbox,
+      config: {
+        border: true // 其他配置项
       }
     },
     {
-      label: '提交',
-      key: 'submit',
-      callback: (data) => {
-        console.log(
-          '提交的-初始化组件',
-          data,
-          '=======> 需要回显',
-          fields.value
-        )
-      }
+      col: 8,
+      label: '其他',
+      type: 'checkbox',
+      prop: 'checkbox',
+      size: 'small',
+      dicData: DIC.Checkbox
     }
   ],
+  actionBtn: [],
   defultBtn: [
     {
-      label: '查询',
+      label: '获取参数',
       key: 'serch',
       callback: (data) => {
-        console.log('查询数据', data, '调用查询方法', fields.value)
+        console.log('查询数据===>', data)
       }
     },
     {
@@ -143,7 +188,21 @@ const option = ref({
       key: 'rest',
       type: 'danger',
       callback: (data) => {
-        console.log('查询数据', data, '调用重置方法,初始化数据', fields.value)
+        console.log('初始化数据', data)
+      }
+    },
+    {
+      label: '提交参数',
+      key: 'submit',
+      callback: (data) => {
+        console.log('提交的-初始化组件', data)
+      }
+    },
+    {
+      label: '新增',
+      key: 'add',
+      callback: (data) => {
+        console.log('新增按钮')
       }
     }
   ]

@@ -2,7 +2,7 @@
  * @Author: wxfeiang
  * @Description: 配置默认规则数据
  * @Date: 2022-08-03 22:03:55
- * @LastEditTime: 2022-08-05 11:11:01
+ * @LastEditTime: 2022-08-05 13:59:56
  * @FilePath: /Imooc-admin/src/components/SeachTable/createRules.js
  */
 import {
@@ -86,6 +86,10 @@ const typeProcessing = (data) => {
     case 'number':
       msg = '请输入'
       inType = 'input'
+      break
+    case 'inputnumber':
+      msg = '请输入'
+      inType = data.type
       break
     case 'select':
     case 'checkbox':

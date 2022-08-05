@@ -2,7 +2,7 @@
  * @Author: wxfeiang
  * @Description: 基础组件
  * @Date: 2022-06-20 18:36:03
- * @LastEditTime: 2022-08-05 11:09:06
+ * @LastEditTime: 2022-08-05 11:34:55
  * @FilePath: /Imooc-admin/src/components/SeachTable/index.vue
 -->
 <template>
@@ -33,9 +33,9 @@
         </template>
 
         <!-- 按钮部分 -->
+        <!--   :span="6"
+          :offset="6" -->
         <el-col
-          :span="6"
-          :offset="6"
           :style="butSty"
           v-if="option.defultBtn && option.defultBtn.length > 0"
         >
@@ -49,16 +49,6 @@
           </template>
         </el-col>
         <!-- 操作按钮放在一行    新增 导出  。。。。 -->
-      </el-row>
-      <el-row :gutter="20">
-        <template v-for="(item, index) in option.actionBtn" :key="index">
-          <el-button
-            @click="callSelf(item)"
-            :type="item.type ? item.type : 'primary'"
-          >
-            {{ item.label }}
-          </el-button>
-        </template>
       </el-row>
     </el-form>
   </div>
@@ -136,7 +126,7 @@ const callback = (data) => {
   data.callback(props.modelValue)
 }
 const butSty = ref({
-  'text-align': 'right'
+  'text-align': 'center'
 })
 </script>
 <style lang="scss" scoped>
