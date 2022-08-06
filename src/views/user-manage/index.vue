@@ -2,7 +2,7 @@
  * @Author: wxfeiang
  * @Description: 案例测试显示页面
  * @Date: 2022-01-15 22:01:21
- * @LastEditTime: 2022-08-05 22:26:05
+ * @LastEditTime: 2022-08-06 14:34:55
  * @FilePath: /Imooc-admin/src/views/user-manage/index.vue
 -->
 <template>
@@ -70,25 +70,44 @@ const option = ref({
   // labelPosition: 'top',
   column: [
     {
-      col: 6,
+      col: 12,
       label: '姓名',
       type: 'input',
       prop: 'name',
       required: true,
-      prefixIcon: 'Apple', // 单独组件显示 不会有任何操作  前缀
-      click: (data) => {
+      prefixIcon: 'Search', // 单独组件显示 不会有任何操作  前缀
+      click: function (data) {
         console.log('点击事件触发回调函数===>', data)
       }
     },
     {
-      col: 6,
+      col: 12,
+      label: '姓名2',
+      type: 'input',
+      prop: 'name',
+      required: true,
+      prefix: 'Search', // 组件写法 不会有任何操作  前缀
+      prefixClick: function (data) {
+        console.log('prefixClick点击事件触发回调函数===>', data)
+      }
+    },
+    {
+      col: 12,
       label: '年龄',
       type: 'input',
       required: true,
       prop: 'age',
-      suffix: 'Search', // TODO: 图标有事件
-      click: (data) => {
-        console.log('点击事件触发回调函数===>', data)
+      suffixIcon: 'Search'
+    },
+    {
+      col: 12,
+      label: '年龄',
+      type: 'input',
+      required: true,
+      prop: 'age',
+      suffix: 'Search',
+      suffixClick: function (data) {
+        console.log('suffixClick图标点击事件触发回调函数===>', data)
       }
     },
     {
@@ -112,8 +131,8 @@ const option = ref({
       prop: 'word',
       append: true,
       appendButton: 'Coin',
-      callback: function (data) {
-        console.log('后缀触发回调函数===>', data, 'this', this)
+      appendCallback: function (data) {
+        console.log('按钮后缀触发回调函数===>', data, 'this', this)
         this.appendButton = 'Search'
       }
     },
@@ -132,10 +151,10 @@ const option = ref({
       prop: 'word',
       append: true,
       //  appendWidth: '140', //h
-      selectVal: '111',
-      dicData: DIC.Checkbox,
-      callback: (data) => {
-        console.log('触发回调函数===>', data)
+      appendVal: '111',
+      appendDicData: DIC.Checkbox,
+      appendCallback: function (data) {
+        console.log('appendCallback触发回调函数===>', data)
       }
     },
     {
@@ -144,7 +163,12 @@ const option = ref({
       type: 'input',
       prop: 'word',
       prepend: true,
-      prependSlect: 'slect'
+      prependVal: '222',
+      // prependWidth: '140', // h
+      prependDicData: DIC.Checkbox,
+      prependCallback: function (data) {
+        console.log('prependCallback触发回调函数===>', data)
+      }
     },
     {
       col: 24,

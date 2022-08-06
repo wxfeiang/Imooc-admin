@@ -2,7 +2,7 @@
  * @Author: wxfeiang
  * @Description: from组件
  * @Date: 2022-06-20 18:36:03
- * @LastEditTime: 2022-08-05 21:08:26
+ * @LastEditTime: 2022-08-06 14:08:38
  * @FilePath: /Imooc-admin/src/components/SeachTable/index.vue
 -->
 <template>
@@ -79,14 +79,25 @@ const props = defineProps({
     required: true
   }
 })
-
 const formItem = ref([])
 onBeforeMount(() => {
+  // 数据初始化处理
   formItem.value = createRules(props.option.column, props.modelValue)
 })
+/**
+ * @description:  数据双向绑定 父组件更新
+ * @param {*} value
+ * @param {*} field
+ * @return {*}
+ */
 const handleValueChange = (value, field) => {
   emit('update:modelValue', { ...props.modelValue, [field]: value })
 }
+/**
+ * @description: 按钮回调函数处理
+ * @param {*} data
+ * @return {*}
+ */
 const callSelf = (data) => {
   if (data.key === 'submit') {
     //  需要执行表单验证
@@ -95,7 +106,6 @@ const callSelf = (data) => {
   }
   if (data.key === 'rest') {
     resetForm(data)
-    console.log(props.modelValue)
 
     return
   }
@@ -107,31 +117,70 @@ const callSelf = (data) => {
   }
 }
 
+/**
+ * @description:  提交按钮 触发验证规则
+ * @param {*} data
+ * @return {*}  true false
+ */
 const submit = (data) => {
   if (!ruleFormRef.value) return
   ruleFormRef.value.validate((valid, fields) => {
     if (valid) {
       callback(data)
     } else {
-      console.log('error submit!', fields)
     }
   })
 }
+/**
+ * @description:  重置
+ * @param {*} data
+ * @return {*} 字段初始值
+ */
 const resetForm = (data) => {
   ruleFormRef.value.resetFields()
 
   //  重置为初始化的时候的值
   callback(data)
 }
+/**
+ * @description:  统一处理回调函数
+ * @param {*} data
+ * @return {*}
+ */
 const callback = (data) => {
   data.callback(props.modelValue)
 }
+/**
+ * @description:  单独项目回调函数
+ * @param {*} data
+ * @return {*}
+ */
 const callbackItem = (data) => {
   if (
     data.click &&
     Object.prototype.toString.call(data.click) === '[object Function]'
   ) {
     data.click(data)
+  } else if (
+    data.prependCallback &&
+    Object.prototype.toString.call(data.prependCallback) === '[object Function]'
+  ) {
+    data.prependCallback(data)
+  } else if (
+    data.appendCallback &&
+    Object.prototype.toString.call(data.appendCallback) === '[object Function]'
+  ) {
+    data.appendCallback(data)
+  } else if (
+    data.prefixClick &&
+    Object.prototype.toString.call(data.prefixClick) === '[object Function]'
+  ) {
+    data.prefixClick(data)
+  } else if (
+    data.suffixClick &&
+    Object.prototype.toString.call(data.suffixClick) === '[object Function]'
+  ) {
+    data.suffixClick(data)
   } else if (
     data.callback &&
     Object.prototype.toString.call(data.callback) === '[object Function]'

@@ -1,3 +1,10 @@
+<!--
+ * @Author: wxfeiang
+ * @Description:
+ * @Date: 2022-02-20 16:38:10
+ * @LastEditTime: 2022-08-06 10:28:19
+ * @FilePath: /Imooc-admin/src/components/Breadcrumb/index.vue
+-->
 <template>
   <el-breadcrumb separator="/">
     <transition-group name="breadcrumb">
@@ -19,7 +26,7 @@
   </el-breadcrumb>
 </template>
 <script setup>
-import { watch, ref } from 'vue' //  监听
+import { ref, watch } from 'vue' //  监听
 
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
@@ -33,7 +40,7 @@ const gerelBreadcrumb = () => {
   breadcrumbData.value = route.matched.filter((item) => {
     return item.meta && item.meta.title
   })
-  // console.log(breadcrumbData.value)
+  //
 }
 
 //  监听路由变化

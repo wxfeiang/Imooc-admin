@@ -2,7 +2,7 @@
  * @Author: wxfeiang
  * @Description: 表单输入组件
  * @Date: 2022-07-19 14:18:00
- * @LastEditTime: 2022-08-05 22:26:14
+ * @LastEditTime: 2022-08-06 14:34:18
  * @FilePath: /Imooc-admin/src/components/control/input/index.vue
 -->
 <template>
@@ -34,24 +34,26 @@
       @input="inputEnter"
       @click="testCallback(itemData.click) ? callbackItem(itemData) : ''"
     >
-      <!-- 插入的前后 -->
+      <!-- 插入的后缀 -->
       <template #append v-if="itemData.append">
         <template v-if="itemData.appendButton">
           <el-button
             :icon="itemData.appendButton"
             @click="
-              testCallback(itemData.callback) ? callbackItem(itemData) : ''
+              testCallback(itemData.appendCallback)
+                ? callbackItem(itemData)
+                : ''
             "
           />
         </template>
-        <template v-if="itemData.dicData">
+        <template v-if="itemData.appendDicData">
           <el-select
-            v-model="select"
+            v-model="appendVal"
             :style="`width: ${itemData.appendWidth || 60}px`"
-            @change="handlerSelect"
+            @change="appendSelect(itemData)"
           >
             <el-option
-              v-for="item in itemData.dicData"
+              v-for="item in itemData.appendDicData"
               :key="item.value"
               :label="item.label"
               :value="item.value"
@@ -63,15 +65,57 @@
           {{ itemData.appendText }}
         </template>
       </template>
+      <!-- 插入的前缀 -->
+      <template #prepend v-if="itemData.prepend">
+        <template v-if="itemData.prependButton">
+          <el-button
+            :icon="itemData.appendButton"
+            @click="
+              testCallback(itemData.prependCallback)
+                ? callbackItem(itemData)
+                : ''
+            "
+          />
+        </template>
+        <template v-if="itemData.prependDicData">
+          <el-select
+            v-model="prependVal"
+            :style="`width: ${itemData.prependWidth || 60}px`"
+            @change="prependSelect(itemData)"
+          >
+            <el-option
+              v-for="item in itemData.prependDicData"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
+        </template>
+        <template v-if="itemData.prependText">
+          {{ itemData.prependText }}
+        </template>
+      </template>
 
-      <!-- 小图标的前后 -->
+      <!-- 前置图标 -->
       <template #prefix v-if="itemData.prefix">
-        <el-icon>
+        <el-icon
+          @click="
+            testCallback(itemData.prefixClick) ? callbackItem(itemData) : ''
+          "
+          :class="testCallback(itemData.prefixClick) ? 'handler' : ''"
+        >
           <component :is="itemData.prefix"></component>
         </el-icon>
       </template>
+      <!-- 后置图标 -->
       <template #suffix v-if="itemData.suffix">
-        <el-icon>
+        <el-icon
+          @click="
+            testCallback(itemData.suffixClick) ? callbackItem(itemData) : ''
+          "
+          :class="testCallback(itemData.suffixClick) ? 'handler' : ''"
+        >
           <component :is="itemData.suffix"></component>
         </el-icon>
       </template>
@@ -94,20 +138,35 @@ const props = defineProps({
   }
 })
 const currentValue = ref('')
-const select = ref('')
-// 监听单个去掉 数组
-watch(
-  () => [props.modelValue, props.itemData.selectVal],
-  ([modelValue, selectVal]) => {
-    currentValue.value = modelValue
-    select.value = selectVal
-  },
-  { deep: true, immediate: true }
-)
+const appendVal = ref('')
 
+const prependVal = ref('')
+
+/**
+ * @description: 更新值变化
+ * @return {*}  传递到上层组件
+ */
 const inputEnter = () => {
   emit('update:modelValue', currentValue.value)
 }
+/**
+ * @description: 事件监听赋值
+ * @return {*} 更新值变化
+ */
+watch(
+  () => [props.modelValue, props.itemData.appendVal, props.itemData.prependVal],
+  ([modelValue, appendNewVal, prependNewVal]) => {
+    currentValue.value = modelValue
+
+    if (props.itemData.append) {
+      appendVal.value = appendNewVal
+    }
+    if (props.itemData.prepend) {
+      prependVal.value = prependNewVal
+    }
+  },
+  { deep: true, immediate: true }
+)
 
 /**
  * @description: 检测是否有回调函数
@@ -121,24 +180,44 @@ const testCallback = (data) => {
     return false
   }
 }
+
+/**
+ * @description:单独处理的回调函数
+ * @param {*} data
+ * @return {*}  data 当前所有参数
+ */
 const callbackItem = (data) => {
-  // if (
-  //   data.callback &&
-  //   Object.prototype.toString.call(data.callback) === '[object Function]'
-  // ) {
-  //   emit('callbackItem', data)
-  // }
   emit('callbackItem', data)
 }
-const handlerSelect = (data) => {
-  data.selectVal = select.value
+
+/**
+ * @description:后缀选择的回调函数
+ * @param {*} data
+ * @return {*}  data 当前所有参数
+ */
+const appendSelect = (data) => {
+  data.appendVal = appendVal.value
   emit('callbackItem', data)
 }
+/**
+ * @description:前缀选择的回调函数
+ * @param {*} data
+ * @return {*}  data 当前所有参数
+ */
+const prependSelect = (data) => {
+  data.prependVal = prependVal.value
+  emit('callbackItem', data)
+}
+
+// TODO: 模糊搜索
 </script>
 
 <style lang="scss" scoped>
 //@import url(); 引入公共css类
 .input-with-select .el-input-group__prepend {
   background-color: var(--el-fill-color-blank);
+}
+.handler {
+  cursor: pointer;
 }
 </style>
