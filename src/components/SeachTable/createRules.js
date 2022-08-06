@@ -2,7 +2,7 @@
  * @Author: wxfeiang
  * @Description: 配置默认规则数据
  * @Date: 2022-08-03 22:03:55
- * @LastEditTime: 2022-08-05 13:59:56
+ * @LastEditTime: 2022-08-06 15:29:11
  * @FilePath: /Imooc-admin/src/components/SeachTable/createRules.js
  */
 import {
@@ -10,6 +10,13 @@ import {
   validatorPass,
   validatorPhone
 } from '@/utils/validator'
+
+/**
+ * @description: 添加默认验证 合并自定义验证
+ * @param {*} data
+ * @param {*} field
+ * @return {*}
+ */
 const createRules = (data, field) => {
   data.forEach((item) => {
     // 检测规则是一个数组类型 Array
@@ -76,6 +83,11 @@ const createRules = (data, field) => {
   return data
 }
 
+/**
+ * @description:  匹配lable  做处理
+ * @param {*} data
+ * @return {*}
+ */
 const typeProcessing = (data) => {
   let msg = ''
   let inType = ''
@@ -91,8 +103,8 @@ const typeProcessing = (data) => {
       msg = '请输入'
       inType = data.type
       break
-    case 'select':
-    case 'checkbox':
+
+    default:
       msg = '请选择'
       inType = data.type
       break

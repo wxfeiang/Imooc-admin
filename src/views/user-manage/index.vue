@@ -2,7 +2,7 @@
  * @Author: wxfeiang
  * @Description: 案例测试显示页面
  * @Date: 2022-01-15 22:01:21
- * @LastEditTime: 2022-08-06 14:34:55
+ * @LastEditTime: 2022-08-08 15:52:48
  * @FilePath: /Imooc-admin/src/views/user-manage/index.vue
 -->
 <template>
@@ -61,7 +61,8 @@ const fields = ref({
   textarea: '',
   setnumber: 1,
   checkbox: ['222'],
-  checkbox2: ['222']
+  checkbox2: ['222'],
+  radio: 0
 })
 // 表单配置项目
 const option = ref({
@@ -70,7 +71,7 @@ const option = ref({
   // labelPosition: 'top',
   column: [
     {
-      col: 12,
+      col: 8,
       label: '姓名',
       type: 'input',
       prop: 'name',
@@ -81,7 +82,7 @@ const option = ref({
       }
     },
     {
-      col: 12,
+      col: 8,
       label: '姓名2',
       type: 'input',
       prop: 'name',
@@ -92,7 +93,7 @@ const option = ref({
       }
     },
     {
-      col: 12,
+      col: 8,
       label: '年龄',
       type: 'input',
       required: true,
@@ -100,7 +101,7 @@ const option = ref({
       suffixIcon: 'Search'
     },
     {
-      col: 12,
+      col: 8,
       label: '年龄',
       type: 'input',
       required: true,
@@ -111,7 +112,7 @@ const option = ref({
       }
     },
     {
-      col: 6,
+      col: 8,
       label: '密码',
       type: 'password',
       required: true,
@@ -119,13 +120,22 @@ const option = ref({
       showPassword: true
     },
     {
-      col: 6,
+      col: 8,
       label: '计步器',
       type: 'inputnumber',
       prop: 'setnumber'
     },
     {
-      col: 12,
+      col: 24,
+      label: '单选',
+      type: 'radio',
+      prop: 'radio',
+      // showButton: true,
+      required: true,
+      dicData: DIC.SEX
+    },
+    {
+      col: 8,
       label: '网站11',
       type: 'input',
       prop: 'word',
@@ -137,7 +147,7 @@ const option = ref({
       }
     },
     {
-      col: 12,
+      col: 8,
       label: '网站',
       type: 'input',
       prop: 'word',
@@ -145,7 +155,7 @@ const option = ref({
       appendText: '.com'
     },
     {
-      col: 12,
+      col: 8,
       label: '后缀选择',
       type: 'input',
       prop: 'word',
@@ -158,7 +168,7 @@ const option = ref({
       }
     },
     {
-      col: 12,
+      col: 8,
       label: '前缀',
       type: 'input',
       prop: 'word',
@@ -180,7 +190,7 @@ const option = ref({
       'show-word-limit': true
     },
     {
-      col: 12,
+      col: 8,
       label: '多选框',
       type: 'checkbox',
       prop: 'checkbox',
@@ -189,7 +199,7 @@ const option = ref({
       dicData: DIC.Checkbox
     },
     {
-      col: 12,
+      col: 8,
       label: '不全',
       type: 'checkbox',
       prop: 'checkbox',
@@ -201,11 +211,12 @@ const option = ref({
       }
     },
     {
-      col: 12,
+      col: 8,
       label: '常用',
       type: 'checkbox',
       required: true,
       prop: 'checkbox2',
+      showButton: true,
       size: 'small',
       dicData: DIC.Checkbox
     }

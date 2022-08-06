@@ -2,7 +2,7 @@
  * @Author: wxfeiang
  * @Description: 多选框组件
  * @Date: 2022-07-19 14:18:00
- * @LastEditTime: 2022-08-05 21:59:42
+ * @LastEditTime: 2022-08-06 15:47:15
  * @FilePath: /Imooc-admin/src/components/control/checkbox/index.vue
 -->
 <template>
@@ -21,13 +21,14 @@
     @change="inputEnter"
   >
     <template v-for="item in itemData.dicData" :key="item.value">
-      <el-checkbox
+      <component
+        :is="itemData.showButton ? 'el-checkbox-button' : 'el-checkbox'"
         :label="item.value"
         :disabled="item.disabled"
         v-bind="itemData.config"
       >
         {{ item.label }}
-      </el-checkbox>
+      </component>
     </template>
   </el-checkbox-group>
 </template>
@@ -50,6 +51,11 @@ const currentValue = ref([])
 const checkAll = ref(false)
 const isIndeterminate = ref(true)
 
+/**
+ * @description: 是否有全选
+ * @param {*} value
+ * @return {*}
+ */
 const testCheckAll = (value) => {
   //  判断是否有全选功能
   if (props.itemData.checkAll) {
@@ -61,11 +67,22 @@ const testCheckAll = (value) => {
     isIndeterminate.value = checkedCount > 0 && checkedCount < allLength
   }
 }
+
+/**
+ * @description: 更新值
+ * @param {*} value
+ * @return {*}
+ */
 const inputEnter = (value) => {
   testCheckAll(value)
   emit('update:modelValue', currentValue.value)
 }
 
+/**
+ * @description: 全选
+ * @param {*} val
+ * @return {*}
+ */
 const handleCheckAllChange = (val) => {
   const all = props.itemData.dicData.map((item) => {
     return item.value
