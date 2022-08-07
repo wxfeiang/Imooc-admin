@@ -2,7 +2,7 @@
  * @Author: wxfeiang
  * @Description: 表单输入组件
  * @Date: 2022-07-19 14:18:00
- * @LastEditTime: 2022-08-07 19:26:53
+ * @LastEditTime: 2022-08-07 19:40:15
  * @FilePath: /Imooc-admin/src/components/control/input/index.vue
 -->
 <template>
@@ -54,9 +54,9 @@
           >
             <el-option
               v-for="item in appendOption"
-              :key="item[defaultPros.label]"
-              :label="item[defaultPros.label]"
-              :value="item[defaultPros.value]"
+              :key="item[defaultProps.label]"
+              :label="item[defaultProps.label]"
+              :value="item[defaultProps.value]"
             >
             </el-option>
           </el-select>
@@ -85,9 +85,9 @@
           >
             <el-option
               v-for="item in prependOption"
-              :key="item[defaultPros.label]"
-              :label="item[defaultPros.label]"
-              :value="item[defaultPros.value]"
+              :key="item[defaultProps.label]"
+              :label="item[defaultProps.label]"
+              :value="item[defaultProps.value]"
             >
             </el-option>
           </el-select>
@@ -124,7 +124,7 @@
 </template>
 <script setup>
 import { defineEmits, defineProps, ref, watch } from 'vue'
-import { initDefaultPros, initOptions } from '../../Form/tools'
+import { initDefaultProps, initOptions } from '../../Form/tools'
 
 const emit = defineEmits(['update:modelValue', 'callbackItem'])
 
@@ -145,7 +145,7 @@ const prependVal = ref('')
 const prependOption = ref([])
 const appendOption = ref([])
 
-const defaultPros = ref({
+const defaultProps = ref({
   label: 'label',
   value: 'value'
 })
@@ -206,7 +206,7 @@ watch(
   () => [props.modelValue, props.itemData.appendVal, props.itemData.prependVal],
   (newValue, valueOld) => {
     currentValue.value = newValue[0]
-    defaultPros.value = initDefaultPros(props.itemData.props)
+    defaultProps.value = initDefaultProps(props.itemData.props)
     if (props.itemData.append) {
       appendVal.value = newValue[1]
       appendOption.value = initOptions(props.itemData.appendOption)

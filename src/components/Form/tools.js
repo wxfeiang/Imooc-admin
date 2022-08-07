@@ -2,7 +2,7 @@
  * @Author: wxfeiang
  * @Description:  处理各种数据
  * @Date: 2022-08-05 09:43:27
- * @LastEditTime: 2022-08-07 19:22:29
+ * @LastEditTime: 2022-08-07 19:40:01
  * @FilePath: /Imooc-admin/src/components/Form/tools.js
  */
 
@@ -43,26 +43,26 @@ export function testCallback(data) {
 /**
  * @description: label和value初始化
  * @param {*} props   传入的
- * @param {*} defaultPros  组件默认
+ * @param {*} defaultProps  组件默认
  * @return {*}  更新后的默认
  */
-export function initDefaultPros(props, defaultPros) {
-  if (!defaultPros) {
-    defaultPros = {
+export function initDefaultProps(props, defaultProps) {
+  if (!defaultProps) {
+    defaultProps = {
       label: 'label',
       value: 'value'
     }
   }
   // 获取默认值的key
-  const keys = Object.keys(defaultPros)
+  const keys = Object.keys(defaultProps)
   if (props && Object.prototype.toString.call(props) === '[object Object]') {
     for (const key in props) {
       if (keys.includes(key)) {
-        defaultPros[key] = props[key]
+        defaultProps[key] = props[key]
       }
     }
   }
-  return defaultPros
+  return defaultProps
 }
 
 /**

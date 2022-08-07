@@ -2,7 +2,7 @@
  * @Author: wxfeiang
  * @Description: 多选框组件
  * @Date: 2022-07-19 14:18:00
- * @LastEditTime: 2022-08-07 19:26:32
+ * @LastEditTime: 2022-08-07 19:40:11
  * @FilePath: /Imooc-admin/src/components/control/checkbox/index.vue
 -->
 <template>
@@ -23,18 +23,18 @@
     <template v-for="item in option" :key="item.value">
       <component
         :is="itemData.showButton ? 'el-checkbox-button' : 'el-checkbox'"
-        :label="item[defaultPros.value]"
+        :label="item[defaultProps.value]"
         :disabled="item.disabled"
         v-bind="itemData.config"
       >
-        {{ item[defaultPros.label] }}
+        {{ item[defaultProps.label] }}
       </component>
     </template>
   </el-checkbox-group>
 </template>
 <script setup>
 import { defineEmits, defineProps, ref, watch } from 'vue'
-import { initDefaultPros, initOptions } from '../../Form/tools'
+import { initDefaultProps, initOptions } from '../../Form/tools'
 const emit = defineEmits(['update:modelValue'])
 
 const props = defineProps({
@@ -53,7 +53,7 @@ const isIndeterminate = ref(true)
 
 const option = ref([])
 
-const defaultPros = ref({
+const defaultProps = ref({
   label: 'label',
   value: 'value'
 })
@@ -104,7 +104,7 @@ watch(
   (newValue, valueOld) => {
     currentValue.value = newValue[0]
     option.value = initOptions(props.itemData.option)
-    defaultPros.value = initDefaultPros(props.itemData.props)
+    defaultProps.value = initDefaultProps(props.itemData.props)
     // 有全选的时候
     if (props.itemData.checkAll) {
       testCheckAll(currentValue.value)
