@@ -2,7 +2,7 @@
  * @Author: wxfeiang
  * @Description: 表单输入组件
  * @Date: 2022-07-19 14:18:00
- * @LastEditTime: 2022-08-06 14:34:18
+ * @LastEditTime: 2022-08-07 19:26:53
  * @FilePath: /Imooc-admin/src/components/control/input/index.vue
 -->
 <template>
@@ -46,17 +46,17 @@
             "
           />
         </template>
-        <template v-if="itemData.appendDicData">
+        <template v-if="itemData.appendOption">
           <el-select
             v-model="appendVal"
             :style="`width: ${itemData.appendWidth || 60}px`"
             @change="appendSelect(itemData)"
           >
             <el-option
-              v-for="item in itemData.appendDicData"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
+              v-for="item in appendOption"
+              :key="item[defaultPros.label]"
+              :label="item[defaultPros.label]"
+              :value="item[defaultPros.value]"
             >
             </el-option>
           </el-select>
@@ -77,17 +77,17 @@
             "
           />
         </template>
-        <template v-if="itemData.prependDicData">
+        <template v-if="itemData.prependOption">
           <el-select
             v-model="prependVal"
             :style="`width: ${itemData.prependWidth || 60}px`"
             @change="prependSelect(itemData)"
           >
             <el-option
-              v-for="item in itemData.prependDicData"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
+              v-for="item in prependOption"
+              :key="item[defaultPros.label]"
+              :label="item[defaultPros.label]"
+              :value="item[defaultPros.value]"
             >
             </el-option>
           </el-select>
@@ -124,6 +124,7 @@
 </template>
 <script setup>
 import { defineEmits, defineProps, ref, watch } from 'vue'
+import { initDefaultPros, initOptions } from '../../Form/tools'
 
 const emit = defineEmits(['update:modelValue', 'callbackItem'])
 
@@ -139,9 +140,15 @@ const props = defineProps({
 })
 const currentValue = ref('')
 const appendVal = ref('')
-
 const prependVal = ref('')
 
+const prependOption = ref([])
+const appendOption = ref([])
+
+const defaultPros = ref({
+  label: 'label',
+  value: 'value'
+})
 /**
  * @description: 更新值变化
  * @return {*}  传递到上层组件
@@ -149,24 +156,6 @@ const prependVal = ref('')
 const inputEnter = () => {
   emit('update:modelValue', currentValue.value)
 }
-/**
- * @description: 事件监听赋值
- * @return {*} 更新值变化
- */
-watch(
-  () => [props.modelValue, props.itemData.appendVal, props.itemData.prependVal],
-  ([modelValue, appendNewVal, prependNewVal]) => {
-    currentValue.value = modelValue
-
-    if (props.itemData.append) {
-      appendVal.value = appendNewVal
-    }
-    if (props.itemData.prepend) {
-      prependVal.value = prependNewVal
-    }
-  },
-  { deep: true, immediate: true }
-)
 
 /**
  * @description: 检测是否有回调函数
@@ -208,6 +197,27 @@ const prependSelect = (data) => {
   data.prependVal = prependVal.value
   emit('callbackItem', data)
 }
+
+/**
+ * @description: 事件监听赋值
+ * @return {*} 更新值变化
+ */
+watch(
+  () => [props.modelValue, props.itemData.appendVal, props.itemData.prependVal],
+  (newValue, valueOld) => {
+    currentValue.value = newValue[0]
+    defaultPros.value = initDefaultPros(props.itemData.props)
+    if (props.itemData.append) {
+      appendVal.value = newValue[1]
+      appendOption.value = initOptions(props.itemData.appendOption)
+    }
+    if (props.itemData.prepend) {
+      prependVal.value = newValue[2]
+      prependOption.value = initOptions(props.itemData.prependOption)
+    }
+  },
+  { deep: true, immediate: true }
+)
 
 // TODO: 模糊搜索
 </script>

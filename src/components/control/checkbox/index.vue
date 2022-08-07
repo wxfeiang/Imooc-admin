@@ -2,7 +2,7 @@
  * @Author: wxfeiang
  * @Description: 多选框组件
  * @Date: 2022-07-19 14:18:00
- * @LastEditTime: 2022-08-06 15:47:15
+ * @LastEditTime: 2022-08-07 19:26:32
  * @FilePath: /Imooc-admin/src/components/control/checkbox/index.vue
 -->
 <template>
@@ -20,21 +20,21 @@
     v-bind="itemData"
     @change="inputEnter"
   >
-    <template v-for="item in itemData.dicData" :key="item.value">
+    <template v-for="item in option" :key="item.value">
       <component
         :is="itemData.showButton ? 'el-checkbox-button' : 'el-checkbox'"
-        :label="item.value"
+        :label="item[defaultPros.value]"
         :disabled="item.disabled"
         v-bind="itemData.config"
       >
-        {{ item.label }}
+        {{ item[defaultPros.label] }}
       </component>
     </template>
   </el-checkbox-group>
 </template>
 <script setup>
 import { defineEmits, defineProps, ref, watch } from 'vue'
-
+import { initDefaultPros, initOptions } from '../../Form/tools'
 const emit = defineEmits(['update:modelValue'])
 
 const props = defineProps({
@@ -51,6 +51,13 @@ const currentValue = ref([])
 const checkAll = ref(false)
 const isIndeterminate = ref(true)
 
+const option = ref([])
+
+const defaultPros = ref({
+  label: 'label',
+  value: 'value'
+})
+
 /**
  * @description: 是否有全选
  * @param {*} value
@@ -60,7 +67,7 @@ const testCheckAll = (value) => {
   //  判断是否有全选功能
   if (props.itemData.checkAll) {
     const checkedCount = value.length
-    const allLength = props.itemData.dicData.map((item) => {
+    const allLength = props.itemData.option.map((item) => {
       return item.value
     }).length
     checkAll.value = checkedCount === allLength
@@ -84,7 +91,7 @@ const inputEnter = (value) => {
  * @return {*}
  */
 const handleCheckAllChange = (val) => {
-  const all = props.itemData.dicData.map((item) => {
+  const all = props.itemData.option.map((item) => {
     return item.value
   })
   currentValue.value = val ? all : []
@@ -93,9 +100,11 @@ const handleCheckAllChange = (val) => {
 
 // 监听单个去掉 数组  // NOTE: 放到后面 因为没有获取到函数执行
 watch(
-  () => [props.modelValue],
-  ([modelValue]) => {
-    currentValue.value = modelValue
+  () => [props.modelValue, props.itemData],
+  (newValue, valueOld) => {
+    currentValue.value = newValue[0]
+    option.value = initOptions(props.itemData.option)
+    defaultPros.value = initDefaultPros(props.itemData.props)
     // 有全选的时候
     if (props.itemData.checkAll) {
       testCheckAll(currentValue.value)
@@ -103,6 +112,8 @@ watch(
   },
   { deep: true, immediate: true }
 )
+
+/** label和value初始化 */
 </script>
 
 <style lang="scss" scoped>

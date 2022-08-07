@@ -2,18 +2,18 @@
  * @Author: wxfeiang
  * @Description: 案例测试显示页面
  * @Date: 2022-01-15 22:01:21
- * @LastEditTime: 2022-08-08 15:52:48
+ * @LastEditTime: 2022-08-07 19:28:55
  * @FilePath: /Imooc-admin/src/views/user-manage/index.vue
 -->
 <template>
   <div class="" id="">
-    <SeachTable :option="option" v-model="fields"></SeachTable>
+    <Form :option="option" v-model="fields"></Form>
   </div>
 </template>
 <script setup>
 import { ref } from 'vue'
 
-import SeachTable from '@/components/SeachTable'
+import Form from '@/components/Form'
 // dict
 const DIC = {
   VAILD: [
@@ -34,33 +34,37 @@ const DIC = {
     {
       label: '女',
       value: 1
+    },
+    {
+      label: '未知',
+      value: 2
     }
   ],
   Checkbox: [
     {
-      label: '元',
-      value: '111'
+      name: '元',
+      id: '111'
     },
     {
-      label: '角',
-      value: '222'
+      name: '角',
+      id: '222'
     },
     {
-      label: '分',
-      value: '333'
+      name: '分',
+      id: '333'
       // disabled: true
     }
   ]
 }
 // 表单初始值
 const fields = ref({
-  name: 'sss',
+  name: '默认姓名',
   age: 19,
   passwrd: '',
   word: '',
   textarea: '',
   setnumber: 1,
-  checkbox: ['222'],
+  checkAll: [1],
   checkbox2: ['222'],
   radio: 0
 })
@@ -76,7 +80,7 @@ const option = ref({
       type: 'input',
       prop: 'name',
       required: true,
-      prefixIcon: 'Search', // 单独组件显示 不会有任何操作  前缀
+      // prefixIcon: 'Search', // 单独组件显示 不会有任何操作  前缀
       click: function (data) {
         console.log('点击事件触发回调函数===>', data)
       }
@@ -85,8 +89,8 @@ const option = ref({
       col: 8,
       label: '姓名2',
       type: 'input',
-      prop: 'name',
       required: true,
+      prop: 'name',
       prefix: 'Search', // 组件写法 不会有任何操作  前缀
       prefixClick: function (data) {
         console.log('prefixClick点击事件触发回调函数===>', data)
@@ -95,7 +99,7 @@ const option = ref({
     {
       col: 8,
       label: '年龄',
-      type: 'input',
+      type: 'number',
       required: true,
       prop: 'age',
       suffixIcon: 'Search'
@@ -104,7 +108,7 @@ const option = ref({
       col: 8,
       label: '年龄',
       type: 'input',
-      required: true,
+
       prop: 'age',
       suffix: 'Search',
       suffixClick: function (data) {
@@ -126,7 +130,7 @@ const option = ref({
       prop: 'setnumber'
     },
     {
-      col: 24,
+      col: 8,
       label: '单选',
       type: 'radio',
       prop: 'radio',
@@ -161,8 +165,8 @@ const option = ref({
       prop: 'word',
       append: true,
       //  appendWidth: '140', //h
-      appendVal: '111',
-      appendDicData: DIC.Checkbox,
+      appendVal: 0,
+      appendOption: DIC.SEX,
       appendCallback: function (data) {
         console.log('appendCallback触发回调函数===>', data)
       }
@@ -173,9 +177,9 @@ const option = ref({
       type: 'input',
       prop: 'word',
       prepend: true,
-      prependVal: '222',
+      prependVal: 1,
       // prependWidth: '140', // h
-      prependDicData: DIC.Checkbox,
+      prependOption: DIC.SEX,
       prependCallback: function (data) {
         console.log('prependCallback触发回调函数===>', data)
       }
@@ -191,12 +195,26 @@ const option = ref({
     },
     {
       col: 8,
-      label: '多选框',
+      label: '常用多选框',
       type: 'checkbox',
-      prop: 'checkbox',
+      required: true,
+      prop: 'checkbox2',
+      // showButton: true,
+      size: 'small',
+      option: DIC.Checkbox,
+      props: {
+        label: 'name',
+        value: 'id'
+      }
+    },
+    {
+      col: 8,
+      label: '全选框',
+      type: 'checkbox',
+      prop: 'checkAll',
       required: true,
       checkAll: true, //  是否加入全选功能 和单个禁用是冲突的
-      dicData: DIC.Checkbox
+      option: DIC.SEX
     },
     {
       col: 8,
@@ -205,20 +223,10 @@ const option = ref({
       prop: 'checkbox',
       size: 'small',
       disabled: true,
-      dicData: DIC.Checkbox,
+      option: DIC.VAILD,
       config: {
         border: true // 其他配置项
       }
-    },
-    {
-      col: 8,
-      label: '常用',
-      type: 'checkbox',
-      required: true,
-      prop: 'checkbox2',
-      showButton: true,
-      size: 'small',
-      dicData: DIC.Checkbox
     }
   ],
   actionBtn: [],

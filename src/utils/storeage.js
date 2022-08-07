@@ -1,3 +1,10 @@
+/*
+ * @Author: wxfeiang
+ * @Description:
+ * @Date: 2022-01-11 11:10:33
+ * @LastEditTime: 2022-08-07 17:56:26
+ * @FilePath: /Imooc-admin/src/utils/storeage.js
+ */
 //  数据本地化存储
 
 /**
@@ -11,12 +18,14 @@ export const setItem = (key, value) => {
   }
   window.localStorage.setItem(key, value)
 }
+
 /**
- * 取出数据
+ * @description: 获取指定的本地缓存
  * @param {*} key
- * @param {*} value
+ * @return {*} data
  */
 export const getItem = (key) => {
+  console.log(key)
   const data = window.localStorage.getItem(key)
   try {
     return JSON.parse(data)
@@ -26,17 +35,18 @@ export const getItem = (key) => {
 }
 
 /**
- * 删除指定数据
+ * @description: 删除指定数据
  * @param {*} key
- * @param {*} value
+ * @return {*}
  */
 export const removeItem = (key) => {
   window.localStorage.removeItem(key)
 }
+
 /**
- * 删除所有
+ * @description: 删除所有缓存数据
  * @param {*} key
- * @param {*} value
+ * @return {*}
  */
 export const removeAllItem = (key) => {
   window.localStorage.clear()

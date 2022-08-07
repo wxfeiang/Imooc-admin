@@ -2,8 +2,8 @@
  * @Author: wxfeiang
  * @Description: from组件
  * @Date: 2022-06-20 18:36:03
- * @LastEditTime: 2022-08-06 15:21:12
- * @FilePath: /Imooc-admin/src/components/SeachTable/index.vue
+ * @LastEditTime: 2022-08-07 01:18:15
+ * @FilePath: /Imooc-admin/src/components/Form/index.vue
 -->
 <template>
   <div class="serch">

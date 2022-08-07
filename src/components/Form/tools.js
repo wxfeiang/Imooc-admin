@@ -2,8 +2,8 @@
  * @Author: wxfeiang
  * @Description:  处理各种数据
  * @Date: 2022-08-05 09:43:27
- * @LastEditTime: 2022-08-07 18:45:13
- * @FilePath: /Imooc-admin/src/utils/tools.js
+ * @LastEditTime: 2022-08-07 19:22:29
+ * @FilePath: /Imooc-admin/src/components/Form/tools.js
  */
 
 /**
@@ -11,7 +11,6 @@
  * @param {*} str  转化类型
  * @return {*}
  */
-
 export function typeProcessing(value) {
   let msg = ''
   switch (value) {
@@ -40,12 +39,9 @@ export function testCallback(data) {
     return false
   }
 }
+
 /**
  * @description: label和value初始化
- * @return {*}
- */
-/**
- * @description:
  * @param {*} props   传入的
  * @param {*} defaultPros  组件默认
  * @return {*}  更新后的默认
@@ -67,4 +63,14 @@ export function initDefaultPros(props, defaultPros) {
     }
   }
   return defaultPros
+}
+
+/**
+ * @description: 初始化  option
+ * @return {*}
+ */
+export function initOptions(option) {
+  if (option && Array.isArray(option) && option.length > 0) {
+    return option
+  }
 }
