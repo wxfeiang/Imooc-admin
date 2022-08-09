@@ -2,7 +2,7 @@
  * @Author: wxfeiang
  * @Description: 单选组件
  * @Date: 2022-07-19 14:18:00
- * @LastEditTime: 2022-08-07 19:39:15
+ * @LastEditTime: 2022-08-08 00:00:00
  * @FilePath: /Imooc-admin/src/components/control/radio/index.vue
 -->
 <template>
@@ -16,14 +16,6 @@
       >
         {{ item.label }}
       </component>
-
-      <!-- <el-radio
-        :label="item.value"
-        :disabled="item.disabled"
-        v-bind="itemData.config"
-      >
-        {{ item.label }}
-      </el-radio> -->
     </template>
   </el-radio-group>
 </template>

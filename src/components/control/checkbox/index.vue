@@ -2,7 +2,7 @@
  * @Author: wxfeiang
  * @Description: 多选框组件
  * @Date: 2022-07-19 14:18:00
- * @LastEditTime: 2022-08-07 19:40:11
+ * @LastEditTime: 2022-08-07 23:52:53
  * @FilePath: /Imooc-admin/src/components/control/checkbox/index.vue
 -->
 <template>
@@ -104,7 +104,10 @@ watch(
   (newValue, valueOld) => {
     currentValue.value = newValue[0]
     option.value = initOptions(props.itemData.option)
-    defaultProps.value = initDefaultProps(props.itemData.props)
+    if (props.itemData.props) {
+      defaultProps.value = initDefaultProps(props.itemData.props)
+    }
+
     // 有全选的时候
     if (props.itemData.checkAll) {
       testCheckAll(currentValue.value)

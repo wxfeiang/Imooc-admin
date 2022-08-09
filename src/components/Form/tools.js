@@ -2,7 +2,7 @@
  * @Author: wxfeiang
  * @Description:  处理各种数据
  * @Date: 2022-08-05 09:43:27
- * @LastEditTime: 2022-08-07 19:40:01
+ * @LastEditTime: 2022-08-07 23:58:46
  * @FilePath: /Imooc-admin/src/components/Form/tools.js
  */
 
@@ -53,9 +53,10 @@ export function initDefaultProps(props, defaultProps) {
       value: 'value'
     }
   }
-  // 获取默认值的key
-  const keys = Object.keys(defaultProps)
+
   if (props && Object.prototype.toString.call(props) === '[object Object]') {
+    // 获取默认值的key
+    const keys = Object.keys(defaultProps)
     for (const key in props) {
       if (keys.includes(key)) {
         defaultProps[key] = props[key]
@@ -70,7 +71,9 @@ export function initDefaultProps(props, defaultProps) {
  * @return {*}
  */
 export function initOptions(option) {
+  let newOption = []
   if (option && Array.isArray(option) && option.length > 0) {
-    return option
+    newOption = option
   }
+  return newOption
 }

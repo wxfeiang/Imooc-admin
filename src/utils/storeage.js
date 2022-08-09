@@ -2,7 +2,7 @@
  * @Author: wxfeiang
  * @Description:
  * @Date: 2022-01-11 11:10:33
- * @LastEditTime: 2022-08-07 17:56:26
+ * @LastEditTime: 2022-08-09 00:58:13
  * @FilePath: /Imooc-admin/src/utils/storeage.js
  */
 //  数据本地化存储
@@ -25,7 +25,6 @@ export const setItem = (key, value) => {
  * @return {*} data
  */
 export const getItem = (key) => {
-  console.log(key)
   const data = window.localStorage.getItem(key)
   try {
     return JSON.parse(data)
