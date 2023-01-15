@@ -35,18 +35,13 @@
       <!-- 文本 -->
       <template v-for="(item, index) in congigTable.columns">
         <!-- 判断是否插槽 -->
-        <el-table-column
-          v-if="item.column == 'slot'"
-          :key="index"
-          v-bind="item"
-        >
+        <el-table-column v-if="item.column == 'slot'" :key="index" v-bind="item">
           <template v-slot="scope">
             <slot :name="item.slotName" :data="scope"></slot>
           </template>
         </el-table-column>
         <!-- 文本 -->
-        <el-table-column v-else :key="item.label" v-bind="item">
-        </el-table-column>
+        <el-table-column v-else :key="item.label" v-bind="item"> </el-table-column>
       </template>
     </el-table>
     <!-- 完整功能分页 -->
@@ -66,66 +61,66 @@
   </div>
 </template>
 <script setup>
-import { defineEmits, defineProps, onBeforeMount, ref } from 'vue'
+import { defineEmits, defineProps, onBeforeMount, ref } from "vue";
 
 const props = defineProps({
   tableData: {
     type: Object,
-    required: true
+    required: true,
   },
   congigTable: {
     type: Object,
-    required: true
+    required: true,
   },
   loading: {
     type: Boolean,
-    default: false
+    default: false,
   },
   page: {
     type: Object,
-    required: true
+    required: true,
   },
   pageSizes: {
     type: Array,
-    default: () => [10, 20, 30, 40]
+    default: () => [10, 20, 30, 40],
   },
   layout: {
     type: String,
-    default: () => 'total, sizes, prev, pager, next, jumper'
-  }
-})
+    default: () => "total, sizes, prev, pager, next, jumper",
+  },
+});
 
-const emptyDesc = ref('未查询到相关数据！')
+const emptyDesc = ref("未查询到相关数据！");
 const selection = () => {
-  console.log('选择---')
-}
+  console.log("选择---");
+};
 onBeforeMount(() => {
-  console.log(props.congigTable, props.page, '--props.page--')
-})
+  console.log(props.congigTable, props.page, "--props.page--");
+});
 
-const small = ref(false)
-const background = ref(true)
-const disabled = ref(false)
+const small = ref(false);
+const background = ref(true);
+const disabled = ref(false);
 
-const emits = defineEmits(['pagination', 'update:page'])
+const emits = defineEmits(["pagination", "update:page"]);
 
 const handleSizeChange = (val) => {
   const pageMessg = {
     size: props.page.size,
-    limt: val
-  }
-  console.log(props.page, pageMessg, 'pageMessg')
+    limt: val,
+  };
+  console.log(props.page, pageMessg, "pageMessg");
 
   // emits('update:page', pageMessg)
-  emits('pagination', pageMessg)
-}
+  emits("pagination", pageMessg);
+};
 const handleCurrentChange = (val) => {
   const pageMessg = {
     size: val,
-    limt: props.page.limt
-  }
+    limt: props.page.limt,
+  };
   //  emits('update:page', pageMessg)
-  emits('pagination', pageMessg)
-}
+  emits("pagination", pageMessg);
+};
 </script>
 <style lang="scss" scoped></style>

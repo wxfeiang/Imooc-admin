@@ -1,10 +1,5 @@
 <template>
-  <el-form
-    ref="ruleFormRef"
-    :model="ruleForm"
-    :rules="rules"
-    label-width="120px"
-  >
+  <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" label-width="120px">
     <el-form-item label="Activity name" prop="name">
       <el-input v-model="ruleForm.name"></el-input>
     </el-form-item>
@@ -12,7 +7,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 
 // const ruleFormRef = ref(null)
 const ruleForm = ref({

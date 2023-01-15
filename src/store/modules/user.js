@@ -1,3 +1,10 @@
+/*
+ * @Author: wxfeiang
+ * @Description:
+ * @Date: 2022-01-10 21:45:50
+ * @LastEditTime: 2022-08-10 18:36:23
+ * @FilePath: /Imooc-admin/src/store/modules/user.js
+ */
 import { getUserInfo, login } from '@/api/sys'
 import { TOKEN } from '@/constant'
 import router from '@/router'
@@ -22,12 +29,11 @@ export default {
   },
   actions: {
     /**
-     *
+     * @description:
      * @param {*} context
      * @param {*} userInfo
-     * @returns
+     * @return {*}
      */
-
     login(context, userInfo) {
       const { username, password } = userInfo
       return new Promise((resolve, reject) => {
@@ -51,10 +57,12 @@ export default {
           })
       })
     },
-    /**
-     * 获取用户信息
-     */
 
+    /**
+     * @description: 获取用户信息
+     * @param {*} context
+     * @return {*}
+     */
     async getUserInfo(context) {
       const res = await getUserInfo()
 
@@ -62,10 +70,11 @@ export default {
       return res
     },
     /**
-     * 退出
+     * @description: 退出
+     * @return {*}
      */
     logout() {
-      this.commit('user/setToken', '')
+      this.commit('user/setToken', null)
       this.commit('user/setUserInfo', {})
       removeAllItem()
       router.push('/login')

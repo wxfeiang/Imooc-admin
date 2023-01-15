@@ -37,47 +37,47 @@
   </div>
 </template>
 <script setup>
-import { ref } from 'vue'
-import { useStore } from 'vuex'
-import { validatePassword } from './rules.js'
+import { ref } from "vue";
+import { useStore } from "vuex";
+import { validatePassword } from "./rules.js";
 // 表单数据
 const loginFrom = ref({
-  username: 'superdmin',
-  password: '123456'
-})
+  username: "superdmin",
+  password: "123456",
+});
 // 验证规则
 const rules = ref({
   username: [
     {
       required: true,
-      message: '请输入用户名',
-      trigger: 'blur'
-    }
+      message: "请输入用户名",
+      trigger: "blur",
+    },
   ],
   password: [
     {
       required: true,
-      trigger: 'blur',
-      validator: validatePassword()
-    }
-  ]
-})
+      trigger: "blur",
+      validator: validatePassword(),
+    },
+  ],
+});
 // 处理密码明文切换
-const passwordType = ref('password')
-const isActive = ref(false)
+const passwordType = ref("password");
+const isActive = ref(false);
 const onChengepwdType = () => {
-  if (passwordType.value === 'password') {
-    passwordType.value = 'text'
-    isActive.value = true
+  if (passwordType.value === "password") {
+    passwordType.value = "text";
+    isActive.value = true;
   } else {
-    passwordType.value = 'password'
-    isActive.value = false
+    passwordType.value = "password";
+    isActive.value = false;
   }
-}
+};
 // 登陆事件操作 倒入store
-const loading = ref(false)
-const store = useStore()
-const loginFormRef = ref(null)
+const loading = ref(false);
+const store = useStore();
+const loginFormRef = ref(null);
 
 const handlerLogin = () => {
   // 表单校验
@@ -85,20 +85,20 @@ const handlerLogin = () => {
   // 数据处理
 
   loginFormRef.value.validate((valid) => {
-    if (!valid) return
-    loading.value = true
+    if (!valid) return;
+    loading.value = true;
 
     store
-      .dispatch('user/login', loginFrom.value)
+      .dispatch("user/login", loginFrom.value)
       .then(() => {
-        loading.value = false
+        loading.value = false;
       })
       .catch((err) => {
-        console.log(err)
-        loading.value = false
-      })
-  })
-}
+        console.log(err);
+        loading.value = false;
+      });
+  });
+};
 </script>
 
 <style scoped lang="scss">

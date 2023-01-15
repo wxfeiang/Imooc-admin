@@ -2,7 +2,7 @@
  * @Author: wxfeiang
  * @Description:
  * @Date: 2022-01-15 15:29:43
- * @LastEditTime: 2022-08-09 11:31:44
+ * @LastEditTime: 2022-08-10 18:33:43
  * @FilePath: /Imooc-admin/src/utils/auth.js
  */
 import { TIME_SAMP, TOKEN, TOKEN_TIMEOUT_VALUE } from '@/constant'
@@ -39,8 +39,5 @@ export function isCheckTimeout() {
   const currentTime = Date.now()
   // 缓存时间
   const tiemStamp = getTimeStamp()
-
-  const timeFlog = currentTime - tiemStamp > TOKEN_TIMEOUT_VALUE
-
-  return getToken() && timeFlog
+  return currentTime - tiemStamp > TOKEN_TIMEOUT_VALUE
 }

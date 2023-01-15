@@ -15,7 +15,7 @@ const service = axios.create({
 // 请求拦截  设置统一header
 service.interceptors.request.use(
   (config) => {
-    console.log(config)
+    // console.log(config)
 
     // params  data 进行加密
     // config.data = { data: config.data ? Encrypt(config.data) : '' }

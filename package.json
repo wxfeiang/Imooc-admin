@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
     "commit": "git-cz",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint": "eslint --fix --ext .js,.vue src"
+
   },
   "dependencies": {
     "@element-plus/icons-vue": "^0.2.4",
@@ -38,11 +39,12 @@
     "babel-eslint": "^10.1.0",
     "commitizen": "^4.2.4",
     "cz-customizable": "^6.3.0",
-    "eslint": "^6.7.2",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-standard": "^4.1.0",
     "eslint-plugin-vue": "^7.0.0",
     "husky": "^7.0.0",
     "lint-staged": "^12.1.4",

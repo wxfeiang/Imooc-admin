@@ -1,3 +1,10 @@
+/*
+ * @Author: wxfeiang
+ * @Description:
+ * @Date: 2022-06-20 18:36:03
+ * @LastEditTime: 2022-11-20 11:06:27
+ * @FilePath: /Imooc-admin/src/utils/permisssion.js
+ */
 import router from '@/router'
 import store from '@/store'
 // 不登陆白名单
